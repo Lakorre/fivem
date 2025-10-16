@@ -367,11 +367,35 @@
                     </div>
                 </div>
                 <div class="submenu-item">
+                    <span class="menu-item-text">Ram Player</span>
+                    <div class="toggle" onclick="toggleOption(this, 'ram')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">God Mode</span>
+                    <div class="toggle" onclick="toggleOption(this, 'godmode')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Infinite Ammo</span>
+                    <div class="toggle" onclick="toggleOption(this, 'infammo')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Ragdoll</span>
+                    <div class="toggle" onclick="toggleOption(this, 'noragdoll')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
                     <span class="menu-item-text">Teleport To</span>
                     <span class="arrow">›</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Clone</span>
+                    <span class="menu-item-text">Clone Player</span>
                     <span class="arrow">›</span>
                 </div>
                 <div class="submenu-item">
@@ -384,21 +408,7 @@
                     <span class="arrow">›</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Ram Player</span>
-                    <div class="toggle active" onclick="toggleOption(this, 'ram')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Perm Kill</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Glitch Player</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Steal His Vehicle</span>
+                    <span class="menu-item-text">Steal Vehicle</span>
                     <span class="arrow">›</span>
                 </div>
             </div>
@@ -406,8 +416,8 @@
             <!-- Actions Tab -->
             <div class="menu-list hidden" id="actionsTab">
                 <div class="submenu-item selected">
-                    <span class="menu-item-text">God Mode</span>
-                    <div class="toggle" onclick="toggleOption(this, 'godmode')">
+                    <span class="menu-item-text">Super Speed</span>
+                    <div class="toggle" onclick="toggleOption(this, 'superspeed')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
@@ -424,14 +434,14 @@
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Fast Run</span>
-                    <div class="toggle" onclick="toggleOption(this, 'fastrun')">
+                    <span class="menu-item-text">Invisibility</span>
+                    <div class="toggle" onclick="toggleOption(this, 'invisible')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Invisibility</span>
-                    <div class="toggle" onclick="toggleOption(this, 'invisible')">
+                    <span class="menu-item-text">Night Vision</span>
+                    <div class="toggle" onclick="toggleOption(this, 'nightvision')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
@@ -443,14 +453,26 @@
                     <span class="menu-item-text">Heal Player</span>
                     <span class="arrow">›</span>
                 </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Change Skin</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Spawn Vehicle</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Custom Weather</span>
+                    <span class="arrow">›</span>
+                </div>
             </div>
         </div>
 
         <div class="footer">
             <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">Beta 0.1 [ discord.gg/se ]</span>
+                <span style="opacity: 0.7; font-size: 12px;">Beta 0.1 [ discord.gg/0e ]</span>
             </div>
-            <span>(8/9)</span>
+            <span id="pageCounter">1/8</span>
         </div>
     </div>
 
@@ -524,6 +546,13 @@
             }, '*');
         }
 
+        function updatePageCounter() {
+            const counter = document.getElementById('pageCounter');
+            if (counter) {
+                counter.textContent = `${selectedIndex + 1}/${menuItems.length}`;
+            }
+        }
+
         // Keyboard navigation
         window.addEventListener('message', function(event) {
             const data = event.data;
@@ -534,9 +563,11 @@
                 if (key === 'ArrowUp') {
                     selectedIndex = Math.max(0, selectedIndex - 1);
                     updateSelection();
+                    updatePageCounter();
                 } else if (key === 'ArrowDown') {
                     selectedIndex = Math.min(menuItems.length - 1, selectedIndex + 1);
                     updateSelection();
+                    updatePageCounter();
                 } else if (key === 'Enter') {
                     const selectedItem = menuItems[selectedIndex];
                     
@@ -551,18 +582,17 @@
                             toggle.click();
                         }
                     }
-                } else if (key === 'ArrowLeft') {
+                } else if (key === 'Backspace') {
                     if (currentView === 'player') {
                         backToMain();
                     }
-                } else if (key === 'ArrowRight') {
-                    if (currentView === 'player') {
-                        const tabs = document.querySelectorAll('.tab');
-                        if (currentTab === 'players') {
-                            tabs[1].click();
-                        } else {
-                            tabs[0].click();
-                        }
+                } else if (key === 'KeyQ') {
+                    if (currentView === 'player' && currentTab === 'actions') {
+                        document.querySelectorAll('.tab')[0].click();
+                    }
+                } else if (key === 'KeyE') {
+                    if (currentView === 'player' && currentTab === 'players') {
+                        document.querySelectorAll('.tab')[1].click();
                     }
                 }
             }
@@ -570,6 +600,7 @@
 
         // Initialize
         updateMenuItems();
+        updatePageCounter();
     </script>
 </body>
 </html>
