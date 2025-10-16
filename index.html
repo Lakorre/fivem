@@ -13,12 +13,14 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: transparent;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             color: #fff;
+            margin: 0;
+            padding: 20px;
         }
 
         .menu-container {
@@ -98,6 +100,7 @@
             transition: all 0.3s ease;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             background: rgba(40, 40, 20, 0.3);
+            outline: none;
         }
 
         .menu-item:hover {
@@ -105,8 +108,9 @@
             padding-left: 25px;
         }
 
-        .menu-item.active {
+        .menu-item.selected {
             background: linear-gradient(90deg, rgba(180, 180, 20, 0.4) 0%, rgba(80, 80, 20, 0.6) 100%);
+            padding-left: 25px;
         }
 
         .menu-item.search {
@@ -203,9 +207,15 @@
             cursor: pointer;
             transition: all 0.3s ease;
             background: rgba(30, 30, 15, 0.3);
+            outline: none;
         }
 
         .submenu-item:hover {
+            background: rgba(60, 60, 20, 0.5);
+            padding-left: 25px;
+        }
+
+        .submenu-item.selected {
             background: rgba(60, 60, 20, 0.5);
             padding-left: 25px;
         }
@@ -220,7 +230,7 @@
         <div id="mainMenu">
             <div class="menu-title">Main menu</div>
             <div class="menu-items">
-                <div class="menu-item active" onclick="openSubmenu('player')">
+                <div class="menu-item" onclick="openSubmenu('player')">
                     <span>Player</span>
                     <span class="arrow">›</span>
                 </div>
@@ -385,13 +395,86 @@
     </div>
 
     <script>
+        let currentMenu = 'main';
+        let selectedIndex = 0;
+        let menuItems = [];
+
+        function updateMenuItems() {
+            if (currentMenu === 'main') {
+                menuItems = document.querySelectorAll('#mainMenu .menu-item');
+            } else {
+                const activeSubmenu = document.querySelector('.submenu.active');
+                if (activeSubmenu) {
+                    menuItems = activeSubmenu.querySelectorAll('.submenu-item');
+                }
+            }
+            updateSelection();
+        }
+
+        function updateSelection() {
+            menuItems.forEach((item, index) => {
+                if (index === selectedIndex) {
+                    item.classList.add('selected');
+                    item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+        }
+
         function openSubmenu(menu) {
+            currentMenu = menu;
+            selectedIndex = 0;
             document.getElementById(menu + 'Menu').classList.add('active');
+            updateMenuItems();
         }
 
         function closeSubmenu(menu) {
+            currentMenu = 'main';
+            selectedIndex = 0;
             document.getElementById(menu + 'Menu').classList.remove('active');
+            updateMenuItems();
         }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                selectedIndex = Math.max(0, selectedIndex - 1);
+                updateSelection();
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                selectedIndex = Math.min(menuItems.length - 1, selectedIndex + 1);
+                updateSelection();
+            } else if (e.key === 'ArrowRight' || e.key === 'Enter') {
+                e.preventDefault();
+                if (currentMenu === 'main') {
+                    const selectedItem = menuItems[selectedIndex];
+                    if (selectedItem && !selectedItem.classList.contains('search')) {
+                        const menuName = ['player', 'server', 'weapon', 'combat', 'vehicle', 'visual', 'misc', 'settings'][selectedIndex];
+                        if (menuName) {
+                            openSubmenu(menuName);
+                        }
+                    }
+                }
+            } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+                e.preventDefault();
+                if (currentMenu !== 'main') {
+                    closeSubmenu(currentMenu);
+                }
+            } else if (e.key === 'Escape') {
+                // Send message back to Lua
+                fetch('https://macho/closeMenu', {
+                    method: 'POST',
+                    body: JSON.stringify({})
+                });
+            }
+        });
+
+        // Initialize on load
+        window.addEventListener('load', function() {
+            updateMenuItems();
+        });
 
         // Listen for messages from Lua
         window.addEventListener('message', function(event) {
@@ -403,21 +486,13 @@
             
             if (data.action === 'openMenu') {
                 document.querySelector('.menu-container').style.display = 'block';
+                currentMenu = 'main';
+                selectedIndex = 0;
+                updateMenuItems();
             }
             
             if (data.action === 'closeMenu') {
                 document.querySelector('.menu-container').style.display = 'none';
-            }
-        });
-
-        // Close menu on ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                // Send message back to Lua
-                fetch('https://macho/closeMenu', {
-                    method: 'POST',
-                    body: JSON.stringify({})
-                });
             }
         });
     </script>
