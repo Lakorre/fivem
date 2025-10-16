@@ -456,4 +456,175 @@
                 <div class="submenu-item">
                     <span class="menu-item-text">Infinite Stamina</span>
                     <div class="toggle" onclick="toggleOption(this, 'stamina')">
-                        <div class="toggle-sli
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Noclip</span>
+                    <div class="toggle" onclick="toggleOption(this, 'noclip')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Walk Through Walls</span>
+                    <div class="toggle" onclick="toggleOption(this, 'walkthrough')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+            </div>
+            <span id="playerCounter">1/5</span>
+        </div>
+    </div>
+
+    <!-- Server Submenu -->
+    <div class="submenu-container hidden" id="serverSubmenu">
+        <div class="submenu-header" onclick="backToMain()">
+            <span class="back-arrow">‹</span>
+            <span>Server Options</span>
+            <span class="mini-logo">NEXUS</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('serverProtection')">
+                Protection
+                <span class="tab-hint">Q</span>
+            </div>
+            <div class="tab" onclick="switchTab('serverTrolling')">
+                Trolling
+                <span class="tab-hint">E</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="menu-list" id="serverProtectionTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Anti-Ban</span>
+                    <div class="toggle" onclick="toggleOption(this, 'antiban')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Anti-Kick</span>
+                    <div class="toggle" onclick="toggleOption(this, 'antikick')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Bypass Anticheat</span>
+                    <div class="toggle" onclick="toggleOption(this, 'bypassac')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Hide From List</span>
+                    <div class="toggle" onclick="toggleOption(this, 'hidelist')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Anti-Spectate</span>
+                    <div class="toggle" onclick="toggleOption(this, 'antispectate')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-list hidden" id="serverTrollingTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Spoof Name</span>
+                    <div class="toggle" onclick="toggleOption(this, 'spoofname')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Spam Chat</span>
+                    <div class="toggle" onclick="toggleOption(this, 'spamchat')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Fake Death</span>
+                    <div class="toggle" onclick="toggleOption(this, 'fakedeath')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Force Ragdoll All</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Crash Server</span>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+            </div>
+            <span id="serverCounter">1/5</span>
+        </div>
+    </div>
+
+    <!-- Weapon Submenu -->
+    <div class="submenu-container hidden" id="weaponSubmenu">
+        <div class="submenu-header" onclick="backToMain()">
+            <span class="back-arrow">‹</span>
+            <span>Weapon Options</span>
+            <span class="mini-logo">NEXUS</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('weaponMain')">
+                Main
+                <span class="tab-hint">Q</span>
+            </div>
+            <div class="tab" onclick="switchTab('weaponMods')">
+                Mods
+                <span class="tab-hint">E</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="menu-list" id="weaponMainTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Infinite Ammo</span>
+                    <div class="toggle" onclick="toggleOption(this, 'infiniteammo')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Reload</span>
+                    <div class="toggle" onclick="toggleOption(this, 'noreload')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Rapid Fire</span>
+                    <div class="toggle" onclick="toggleOption(this, 'rapidfire')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Recoil</span>
+                    <div class="toggle" onclick="toggleOption(this, 'norecoil')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Give All Weapons</span>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+
+            <div class="menu-list hidden" id="weaponModsTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Explosive Bullets</span>
+                    <div class="toggle" onclick="toggleO
