@@ -1144,40 +1144,67 @@
             initializeMainMenu();
             updateCounter('mainCounter', 1, menuCounts.main);
             setupKeyboardListeners();
+            
+            // Hide menu by default for FiveM
+            hideMenu();
         });
 
         // Setup keyboard event listeners
         function setupKeyboardListeners() {
             document.addEventListener('keydown', function(event) {
+                // Check if menu is visible
+                const mainMenu = document.getElementById('mainMenu');
+                const submenuVisible = document.querySelector('.submenu-container:not(.hidden)');
+                
+                // Only handle keys if menu is visible
+                if (mainMenu.classList.contains('hidden') && !submenuVisible) {
+                    return; // Don't interfere with game controls
+                }
+
                 switch(event.key.toLowerCase()) {
                     case 'arrowup':
                         event.preventDefault();
+                        event.stopPropagation();
                         navigateMenu('up');
                         break;
                     case 'arrowdown':
                         event.preventDefault();
+                        event.stopPropagation();
                         navigateMenu('down');
                         break;
                     case 'enter':
                         event.preventDefault();
+                        event.stopPropagation();
                         navigateMenu('enter');
                         break;
                     case 'backspace':
                         event.preventDefault();
+                        event.stopPropagation();
                         if (currentMenu !== 'main') {
                             backToMain();
                         }
                         break;
                     case 'q':
                         event.preventDefault();
+                        event.stopPropagation();
                         if (currentMenu !== 'main') {
                             switchTabByKey('prev');
                         }
                         break;
                     case 'e':
                         event.preventDefault();
+                        event.stopPropagation();
                         if (currentMenu !== 'main') {
                             switchTabByKey('next');
+                        }
+                        break;
+                    case 'escape':
+                        event.preventDefault();
+                        event.stopPropagation();
+                        if (currentMenu !== 'main') {
+                            backToMain();
+                        } else {
+                            hideMenu();
                         }
                         break;
                 }
@@ -1321,6 +1348,27 @@
             submenus.forEach(submenu => submenu.classList.add('hidden'));
             
             // Show main menu
+            document.getElementById('mainMenu').classList.remove('hidden');
+            currentMenu = 'main';
+            selectedIndex = 0;
+            updateSelection();
+            updateCounter('mainCounter', 1, menuCounts.main);
+        }
+
+        // Hide menu completely
+        function hideMenu() {
+            // Hide main menu
+            document.getElementById('mainMenu').classList.add('hidden');
+            
+            // Hide all submenus
+            const submenus = document.querySelectorAll('.submenu-container');
+            submenus.forEach(submenu => submenu.classList.add('hidden'));
+            
+            currentMenu = 'hidden';
+        }
+
+        // Show menu
+        function showMenu() {
             document.getElementById('mainMenu').classList.remove('hidden');
             currentMenu = 'main';
             selectedIndex = 0;
