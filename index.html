@@ -494,6 +494,30 @@
             if (data.action === 'closeMenu') {
                 document.querySelector('.menu-container').style.display = 'none';
             }
+
+            // Handle key presses from Lua
+            if (data.action === 'keyPress') {
+                const key = data.key;
+                
+                if (key === 'ArrowUp') {
+                    selectedIndex = Math.max(0, selectedIndex - 1);
+                    updateSelection();
+                } else if (key === 'ArrowDown') {
+                    selectedIndex = Math.min(menuItems.length - 1, selectedIndex + 1);
+                    updateSelection();
+                } else if (key === 'ArrowRight' || key === 'Enter') {
+                    if (currentMenu === 'main') {
+                        const menuNames = ['player', 'server', 'weapon', 'combat', 'vehicle', 'visual', 'misc', 'settings'];
+                        if (selectedIndex < menuNames.length) {
+                            openSubmenu(menuNames[selectedIndex]);
+                        }
+                    }
+                } else if (key === 'ArrowLeft') {
+                    if (currentMenu !== 'main') {
+                        closeSubmenu(currentMenu);
+                    }
+                }
+            }
         });
     </script>
 </body>
