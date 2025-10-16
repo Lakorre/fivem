@@ -373,7 +373,7 @@
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">God Mode</span>
+                    <span class="menu-item-text">Invisible</span>
                     <div class="toggle" onclick="toggleOption(this, 'godmode')">
                         <div class="toggle-slider"></div>
                     </div>
@@ -482,6 +482,36 @@
         let selectedIndex = 0;
         let menuItems = [];
         let toggleStates = {};
+        
+        // متغيرات خاصة بميزة Invisible
+        let invisibilityLoop = false;
+        let invisibilityAlpha = 100;
+        let invisibilityInterval = null;
+
+        // دالة الإشعارات
+        function MachoMenuNotification(title, message) {
+            console.log(`[${title}] ${message}`);
+            // يمكنك إضافة نظام إشعارات مرئي هنا إذا أردت
+        }
+
+        // دوال FiveM (تحتاج أن تكون متصل بـ FiveM لتعمل)
+        function PlayerPedId() {
+            // هذه دالة FiveM - في بيئة حقيقية ستعمل تلقائياً
+            console.log('PlayerPedId called');
+            return 1; // قيمة وهمية للتجربة
+        }
+
+        function SetEntityVisible(entity, visible, unk) {
+            console.log(`SetEntityVisible: ${entity}, ${visible}, ${unk}`);
+        }
+
+        function SetEntityLocallyVisible(entity) {
+            console.log(`SetEntityLocallyVisible: ${entity}`);
+        }
+
+        function SetEntityAlpha(entity, alpha, skin) {
+            console.log(`SetEntityAlpha: ${entity}, ${alpha}, ${skin}`);
+        }
 
         function updateMenuItems() {
             if (currentView === 'main') {
@@ -539,6 +569,55 @@
             element.classList.toggle('active');
             toggleStates[option] = element.classList.contains('active');
             
+            // تطبيق وظيفة Invisible عند تفعيلها
+            if (option === 'godmode') {
+                if (toggleStates[option]) {
+                    // تفعيل الإخفاء
+                    invisibilityLoop = true;
+                    MachoMenuNotification("Invisible", "Activated - Alpha: " + invisibilityAlpha);
+                    
+                    // بدء حلقة الإخفاء
+                    invisibilityInterval = setInterval(function() {
+                        if (!invisibilityLoop) {
+                            clearInterval(invisibilityInterval);
+                            return;
+                        }
+                        
+                        const playerPed = PlayerPedId();
+                        
+                        // للآخرين: إخفاء كامل دائماً
+                        SetEntityVisible(playerPed, false, false);
+                        
+                        // للكلاينت فقط: جعل الشخصية مرئية محلياً
+                        SetEntityLocallyVisible(playerPed);
+                        
+                        // تطبيق مستوى الشفافية للكلاينت
+                        if (invisibilityAlpha === 0) {
+                            SetEntityAlpha(playerPed, 0, false);
+                        } else {
+                            SetEntityAlpha(playerPed, invisibilityAlpha, false);
+                        }
+                    }, 0);
+                    
+                } else {
+                    // إلغاء تفعيل الإخفاء
+                    invisibilityLoop = false;
+                    MachoMenuNotification("Invisible", "Deactivated");
+                    
+                    // إيقاف الحلقة
+                    if (invisibilityInterval) {
+                        clearInterval(invisibilityInterval);
+                        invisibilityInterval = null;
+                    }
+                    
+                    // إرجاع الشخصية للحالة الطبيعية
+                    const playerPed = PlayerPedId();
+                    SetEntityVisible(playerPed, true, false);
+                    SetEntityAlpha(playerPed, 255, false);
+                }
+            }
+            
+            // إرسال رسالة للكلاينت الخارجي (FiveM)
             window.postMessage({
                 action: 'toggle',
                 option: option,
