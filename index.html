@@ -796,4 +796,104 @@
                 </div>
                 <div class="submenu-item">
                     <span class="menu-item-text">Fly Mode</span>
-                   
+                    <div class="toggle" onclick="toggleOption(this, 'vehiclefly')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Rainbow RGB</span>
+                    <div class="toggle" onclick="toggleOption(this, 'vehiclergb')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Spawn Vehicle</span>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+
+            <div class="menu-list hidden" id="vehicleModsTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Boost</span>
+                    <div class="toggle" onclick="toggleOption(this, 'vehicleboost')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Flip</span>
+                    <div class="toggle" onclick="toggleOption(this, 'nofilp')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Instant Brake</span>
+                    <div class="toggle" onclick="toggleOption(this, 'instantbrake')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Drive on Water</span>
+                    <div class="toggle" onclick="toggleOption(this, 'driveonwater')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Damage</span>
+                    <div class="toggle" onclick="toggleOption(this, 'nodamage')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+            </div>
+            <span id="vehicleCounter">1/5</span>
+        </div>
+    </div>
+
+    <!-- Visual Submenu -->
+    <div class="submenu-container hidden" id="visualSubmenu">
+        <div class="submenu-header" onclick="backToMain()">
+            <span class="back-arrow">‹</span>
+            <span>Visual Options</span>
+            <span class="mini-logo">NEXUS</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('visualEffects')">
+                Effects
+                <span class="tab-hint">Q</span>
+            </div>
+            <div class="tab" onclick="switchTab('visualWorld')">
+                World
+                <span class="tab-hint">E</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="menu-list" id="visualEffectsTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Night Vision</span>
+                    <div class="toggle" onclick="toggleOption(this, 'nightvision')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Thermal Vision</span>
+                    <div class="toggle" onclick="toggleOption(this, 'thermalvision')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">X-Ray Vision</span>
+                    <div class="toggle" onclick="toggleOption(this, 'xrayvision')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Motion Blur</span>
+                    <div class="toggle" onclick="toggleOption(this, 'motionblur')">
+                        <div class="toggle-s
