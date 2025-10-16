@@ -1219,4 +1219,103 @@
             } else {
                 // Handle submenu navigation
                 const activeTab = getActiveTab();
-                c
+                const items = document.querySelectorAll(`#${activeTab} .submenu-item`);
+                
+                if (direction === 'up' && selectedIndex > 0) {
+                    selectedIndex--;
+                } else if (direction === 'down' && selectedIndex < items.length - 1) {
+                    selectedIndex++;
+                } else if (direction === 'enter') {
+                    const selectedItem = items[selectedIndex];
+                    const toggle = selectedItem.querySelector('.toggle');
+                    if (toggle) {
+                        toggleOption(toggle, '');
+                    }
+                }
+            }
+            
+            updateSelection();
+            updateCounter();
+        }
+
+        // Get active tab
+        function getActiveTab() {
+            const activeTab = document.querySelector('.tab.active');
+            if (activeTab) {
+                const tabName = activeTab.onclick.toString().match(/switchTab\('([^']+)'\)/)[1];
+                return tabName + 'Tab';
+            }
+            return 'playersTab';
+        }
+
+        // Switch between tabs using keyboard
+        function switchTabByKey(direction) {
+            const tabs = tabConfigs[currentMenu];
+            if (!tabs) return;
+            
+            const currentTabIndex = tabs.indexOf(currentTab);
+            let newTabIndex;
+            
+            if (direction === 'next') {
+                newTabIndex = (currentTabIndex + 1) % tabs.length;
+            } else {
+                newTabIndex = (currentTabIndex - 1 + tabs.length) % tabs.length;
+            }
+            
+            const newTab = tabs[newTabIndex];
+            switchTab(newTab);
+        }
+
+        // Switch between tabs
+        function switchTab(tabName) {
+            currentTab = tabName;
+            
+            // Update tab appearance
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Find and activate the correct tab
+            const targetTab = Array.from(tabs).find(tab => 
+                tab.onclick && tab.onclick.toString().includes(`switchTab('${tabName}')`)
+            );
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+            
+            // Show/hide tab content
+            const allTabs = document.querySelectorAll('[id$="Tab"]');
+            allTabs.forEach(tab => tab.classList.add('hidden'));
+            
+            const targetTabContent = document.getElementById(tabName + 'Tab');
+            if (targetTabContent) {
+                targetTabContent.classList.remove('hidden');
+            }
+            
+            // Reset selection
+            selectedIndex = 0;
+            updateSelection();
+            updateCounter();
+        }
+
+        // Open submenu
+        function openSubmenu(menuName) {
+            // Hide main menu
+            document.getElementById('mainMenu').classList.add('hidden');
+            
+            // Show submenu
+            const submenu = document.getElementById(menuName + 'Submenu');
+            if (submenu) {
+                submenu.classList.remove('hidden');
+                currentMenu = menuName;
+                selectedIndex = 0;
+                currentTab = tabConfigs[menuName] ? tabConfigs[menuName][0] : 'players';
+                updateSelection();
+                updateCounter();
+            }
+        }
+
+        // Go back to main menu
+        function backToMain() {
+            // Hide all submenus
+            const submenus = document.querySelectorAll('.submenu-container');
+            submenus.forEach(submenu => submenu.classList.add('hid
