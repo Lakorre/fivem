@@ -1308,4 +1308,64 @@
                 submenu.classList.remove('hidden');
                 currentMenu = menuName;
                 selectedIndex = 0;
-                currentTab = tabConfigs[menuName] ? tabConfigs[menuName][0] :
+                currentTab = tabConfigs[menuName] ? tabConfigs[menuName][0] : 'players';
+                updateSelection();
+                updateCounter();
+            }
+        }
+
+        // Go back to main menu
+        function backToMain() {
+            // Hide all submenus
+            const submenus = document.querySelectorAll('.submenu-container');
+            submenus.forEach(submenu => submenu.classList.add('hidden'));
+            
+            // Show main menu
+            document.getElementById('mainMenu').classList.remove('hidden');
+            currentMenu = 'main';
+            selectedIndex = 0;
+            updateSelection();
+            updateCounter('mainCounter', 1, menuCounts.main);
+        }
+
+        // Toggle option
+        function toggleOption(toggle, optionName) {
+            toggle.classList.toggle('active');
+            console.log(`Toggled ${optionName}: ${toggle.classList.contains('active')}`);
+        }
+
+        // Update counter
+        function updateCounter(counterId = null, current = null, total = null) {
+            if (counterId && current !== null && total !== null) {
+                const counter = document.getElementById(counterId);
+                if (counter) {
+                    counter.textContent = `${current}/${total}`;
+                }
+            } else {
+                // Auto-update based on current menu
+                const counterMap = {
+                    main: 'mainCounter',
+                    player: 'playerCounter',
+                    server: 'serverCounter',
+                    weapon: 'weaponCounter',
+                    combat: 'combatCounter',
+                    vehicle: 'vehicleCounter',
+                    visual: 'visualCounter',
+                    misc: 'miscCounter',
+                    settings: 'settingsCounter'
+                };
+                
+                const counterId = counterMap[currentMenu];
+                if (counterId) {
+                    const counter = document.getElementById(counterId);
+                    if (counter) {
+                        const currentIndex = selectedIndex + 1;
+                        const total = menuCounts[currentMenu];
+                        counter.textContent = `${currentIndex}/${total}`;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
