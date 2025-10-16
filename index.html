@@ -20,16 +20,15 @@
             min-height: 100vh;
             color: #fff;
             margin: 0;
-            padding: 20px;
-            padding-left: 50px;
+            padding: 50px;
         }
 
         .menu-container {
             width: 400px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.95);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
         }
 
         .header {
@@ -98,7 +97,7 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             background: rgba(40, 40, 20, 0.3);
             outline: none;
@@ -112,22 +111,10 @@
         .menu-item.selected {
             background: linear-gradient(90deg, rgba(180, 180, 20, 0.4) 0%, rgba(80, 80, 20, 0.6) 100%);
             padding-left: 25px;
-        }
-
-        .menu-item.search {
-            background: rgba(30, 30, 15, 0.5);
-        }
-
-        .menu-item.search:hover {
-            background: rgba(50, 50, 20, 0.7);
+            border-left: 3px solid #FFE600;
         }
 
         .arrow {
-            color: rgba(255, 230, 0, 0.8);
-            font-size: 18px;
-        }
-
-        .search-icon {
             color: rgba(255, 230, 0, 0.8);
             font-size: 18px;
         }
@@ -162,29 +149,132 @@
             box-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
         }
 
-        .submenu {
-            display: none;
-            background: rgba(0, 0, 0, 0.9);
+        /* Submenu Styles */
+        .submenu-container {
+            width: 500px;
+            background: rgba(0, 0, 0, 0.95);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(20, 20, 10, 0.8);
+            border-bottom: 1px solid rgba(255, 230, 0, 0.2);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-right: 1px solid rgba(255, 230, 0, 0.1);
+            background: rgba(30, 30, 15, 0.5);
+        }
+
+        .tab:last-child {
+            border-right: none;
+        }
+
+        .tab:hover {
+            background: rgba(60, 60, 20, 0.6);
+        }
+
+        .tab.active {
+            background: linear-gradient(180deg, rgba(180, 180, 20, 0.4) 0%, rgba(80, 80, 20, 0.6) 100%);
+            border-bottom: 2px solid #FFE600;
+        }
+
+        .content {
+            display: flex;
+            height: 400px;
+        }
+
+        .menu-list {
+            flex: 1;
+            overflow-y: auto;
+            background: rgba(15, 15, 8, 0.8);
+        }
+
+        .menu-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .menu-list::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 230, 0, 0.5);
+            border-radius: 3px;
+        }
+
+        .submenu-item {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            outline: none;
+        }
+
+        .submenu-item:hover {
+            background: rgba(60, 60, 20, 0.5);
+            padding-left: 25px;
+        }
+
+        .submenu-item.selected {
+            background: linear-gradient(90deg, rgba(180, 180, 20, 0.4) 0%, rgba(80, 80, 20, 0.6) 100%);
+            padding-left: 25px;
+            border-left: 3px solid #FFE600;
+        }
+
+        .menu-item-text {
+            flex: 1;
+        }
+
+        .menu-item-value {
+            color: rgba(255, 230, 0, 0.8);
+            font-size: 13px;
+            margin: 0 10px;
+        }
+
+        .toggle {
+            width: 44px;
+            height: 24px;
+            background: rgba(100, 100, 100, 0.3);
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle.active {
+            background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+        }
+
+        .toggle-slider {
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            animation: slideIn 0.3s ease;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(0);
-            }
+        .toggle.active .toggle-slider {
+            transform: translateX(20px);
         }
 
-        .submenu.active {
-            display: block;
+        .hidden {
+            display: none;
         }
 
         .submenu-header {
@@ -201,213 +291,182 @@
             color: #FFE600;
             font-size: 20px;
         }
-
-        .submenu-item {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(30, 30, 15, 0.3);
-            outline: none;
-        }
-
-        .submenu-item:hover {
-            background: rgba(60, 60, 20, 0.5);
-            padding-left: 25px;
-        }
-
-        .submenu-item.selected {
-            background: rgba(60, 60, 20, 0.5);
-            padding-left: 25px;
-        }
     </style>
 </head>
 <body>
-    <div class="menu-container">
+    <!-- Main Menu -->
+    <div class="menu-container" id="mainMenu">
         <div class="header">
             <div class="logo">AURA</div>
         </div>
 
-        <div id="mainMenu">
-            <div class="menu-title">Main menu</div>
-            <div class="menu-items">
-                <div class="menu-item" onclick="openSubmenu('player')">
-                    <span>Player</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="menu-item" onclick="openSubmenu('server')">
-                    <span>Server</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="menu-item" onclick="openSubmenu('weapon')">
-                    <span>Weapon</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="menu-item" onclick="openSubmenu('combat')">
-                    <span>Combat</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="menu-item" onclick="openSubmenu('vehicle')">
-                    <span>Vehicle</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="menu-item" onclick="openSubmenu('visual')">
-                    <span>Visual</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="menu-item" onclick="openSubmenu('misc')">
-                    <span>Miscellaneous</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="menu-item" onclick="openSubmenu('settings')">
-                    <span>Settings</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="menu-item search">
-                    <span>Search</span>
-                    <span class="search-icon">🔍</span>
-                </div>
+        <div class="menu-title">Main menu</div>
+        <div class="menu-items">
+            <div class="menu-item selected" data-menu="player">
+                <span>Player</span>
+                <span class="arrow">›</span>
             </div>
-            <div class="footer">
-                <div class="footer-left">
-                    <div class="coin-icon">$</div>
-                    <span>123456</span>
-                    <span style="opacity: 0.6;">| 3d ago</span>
-                </div>
-                <span>1/9</span>
+            <div class="menu-item" data-menu="server">
+                <span>Server</span>
+                <span class="arrow">›</span>
             </div>
-        </div>
-
-        <!-- Player Submenu -->
-        <div class="submenu" id="playerMenu">
-            <div class="submenu-header" onclick="closeSubmenu('player')">
-                <span class="back-arrow">‹</span>
-                <span>Player Options</span>
+            <div class="menu-item" data-menu="weapon">
+                <span>Weapon</span>
+                <span class="arrow">›</span>
             </div>
-            <div class="menu-items">
-                <div class="submenu-item">God Mode</div>
-                <div class="submenu-item">Infinite Stamina</div>
-                <div class="submenu-item">Super Jump</div>
-                <div class="submenu-item">Fast Run</div>
-                <div class="submenu-item">Invisibility</div>
-                <div class="submenu-item">No Ragdoll</div>
+            <div class="menu-item" data-menu="combat">
+                <span>Combat</span>
+                <span class="arrow">›</span>
             </div>
-        </div>
-
-        <!-- Server Submenu -->
-        <div class="submenu" id="serverMenu">
-            <div class="submenu-header" onclick="closeSubmenu('server')">
-                <span class="back-arrow">‹</span>
-                <span>Server Options</span>
+            <div class="menu-item" data-menu="vehicle">
+                <span>Vehicle</span>
+                <span class="arrow">›</span>
             </div>
-            <div class="menu-items">
-                <div class="submenu-item">Player List</div>
-                <div class="submenu-item">Teleport to Player</div>
-                <div class="submenu-item">Spectate Player</div>
-                <div class="submenu-item">Server Info</div>
+            <div class="menu-item" data-menu="visual">
+                <span>Visual</span>
+                <span class="arrow">›</span>
             </div>
-        </div>
-
-        <!-- Weapon Submenu -->
-        <div class="submenu" id="weaponMenu">
-            <div class="submenu-header" onclick="closeSubmenu('weapon')">
-                <span class="back-arrow">‹</span>
-                <span>Weapon Options</span>
-            </div>
-            <div class="menu-items">
-                <div class="submenu-item">Give All Weapons</div>
-                <div class="submenu-item">Infinite Ammo</div>
-                <div class="submenu-item">No Reload</div>
-                <div class="submenu-item">Rapid Fire</div>
-                <div class="submenu-item">Explosive Bullets</div>
-            </div>
-        </div>
-
-        <!-- Combat Submenu -->
-        <div class="submenu" id="combatMenu">
-            <div class="submenu-header" onclick="closeSubmenu('combat')">
-                <span class="back-arrow">‹</span>
-                <span>Combat Options</span>
-            </div>
-            <div class="menu-items">
-                <div class="submenu-item">Aimbot</div>
-                <div class="submenu-item">Auto Heal</div>
-                <div class="submenu-item">One Shot Kill</div>
-                <div class="submenu-item">No Recoil</div>
-            </div>
-        </div>
-
-        <!-- Vehicle Submenu -->
-        <div class="submenu" id="vehicleMenu">
-            <div class="submenu-header" onclick="closeSubmenu('vehicle')">
-                <span class="back-arrow">‹</span>
-                <span>Vehicle Options</span>
-            </div>
-            <div class="menu-items">
-                <div class="submenu-item">Spawn Vehicle</div>
-                <div class="submenu-item">Super Speed</div>
-                <div class="submenu-item">Infinite Nitro</div>
-                <div class="submenu-item">Vehicle God Mode</div>
-                <div class="submenu-item">Auto Repair</div>
-            </div>
-        </div>
-
-        <!-- Visual Submenu -->
-        <div class="submenu" id="visualMenu">
-            <div class="submenu-header" onclick="closeSubmenu('visual')">
-                <span class="back-arrow">‹</span>
-                <span>Visual Options</span>
-            </div>
-            <div class="menu-items">
-                <div class="submenu-item">ESP Players</div>
-                <div class="submenu-item">ESP Vehicles</div>
-                <div class="submenu-item">Night Vision</div>
-                <div class="submenu-item">Thermal Vision</div>
-            </div>
-        </div>
-
-        <!-- Miscellaneous Submenu -->
-        <div class="submenu" id="miscMenu">
-            <div class="submenu-header" onclick="closeSubmenu('misc')">
-                <span class="back-arrow">‹</span>
+            <div class="menu-item" data-menu="misc">
                 <span>Miscellaneous</span>
+                <span class="arrow">›</span>
             </div>
-            <div class="menu-items">
-                <div class="submenu-item">Teleport Waypoint</div>
-                <div class="submenu-item">No Fall Damage</div>
-                <div class="submenu-item">Unlock All</div>
-                <div class="submenu-item">Custom Weather</div>
+            <div class="menu-item" data-menu="settings">
+                <span>Settings</span>
+                <span class="arrow">›</span>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-left">
+                <div class="coin-icon">$</div>
+                <span>123456</span>
+                <span style="opacity: 0.6;">| 3d ago</span>
+            </div>
+            <span>1/9</span>
+        </div>
+    </div>
+
+    <!-- Player Submenu with Tabs -->
+    <div class="submenu-container hidden" id="playerSubmenu">
+        <div class="submenu-header" onclick="backToMain()">
+            <span class="back-arrow">‹</span>
+            <span>Player Options</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('players')">Players</div>
+            <div class="tab" onclick="switchTab('actions')">Actions</div>
+        </div>
+
+        <div class="content">
+            <!-- Players Tab -->
+            <div class="menu-list" id="playersTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Spectate</span>
+                    <div class="toggle" onclick="toggleOption(this, 'spectate')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Teleport To</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Clone</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Animations</span>
+                    <span class="menu-item-value">Jerk Off</span>
+                    <span class="arrow">‹ ›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Attach Vehicles</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Ram Player</span>
+                    <div class="toggle active" onclick="toggleOption(this, 'ram')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Perm Kill</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Glitch Player</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Steal His Vehicle</span>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+
+            <!-- Actions Tab -->
+            <div class="menu-list hidden" id="actionsTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">God Mode</span>
+                    <div class="toggle" onclick="toggleOption(this, 'godmode')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Infinite Stamina</span>
+                    <div class="toggle" onclick="toggleOption(this, 'stamina')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Super Jump</span>
+                    <div class="toggle" onclick="toggleOption(this, 'superjump')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Fast Run</span>
+                    <div class="toggle" onclick="toggleOption(this, 'fastrun')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Invisibility</span>
+                    <div class="toggle" onclick="toggleOption(this, 'invisible')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Teleport Waypoint</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Heal Player</span>
+                    <span class="arrow">›</span>
+                </div>
             </div>
         </div>
 
-        <!-- Settings Submenu -->
-        <div class="submenu" id="settingsMenu">
-            <div class="submenu-header" onclick="closeSubmenu('settings')">
-                <span class="back-arrow">‹</span>
-                <span>Settings</span>
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Beta 0.1 [ discord.gg/se ]</span>
             </div>
-            <div class="menu-items">
-                <div class="submenu-item">Menu Theme</div>
-                <div class="submenu-item">Keybinds</div>
-                <div class="submenu-item">Language</div>
-                <div class="submenu-item">About</div>
-            </div>
+            <span>(8/9)</span>
         </div>
     </div>
 
     <script>
-        let currentMenu = 'main';
+        let currentView = 'main';
+        let currentTab = 'players';
         let selectedIndex = 0;
         let menuItems = [];
+        let toggleStates = {};
 
         function updateMenuItems() {
-            if (currentMenu === 'main') {
+            if (currentView === 'main') {
                 menuItems = document.querySelectorAll('#mainMenu .menu-item');
             } else {
-                const activeSubmenu = document.querySelector('.submenu.active');
-                if (activeSubmenu) {
-                    menuItems = activeSubmenu.querySelectorAll('.submenu-item');
-                }
+                const activeTab = document.getElementById(currentTab + 'Tab');
+                menuItems = activeTab.querySelectorAll('.submenu-item');
             }
             updateSelection();
         }
@@ -416,7 +475,7 @@
             menuItems.forEach((item, index) => {
                 if (index === selectedIndex) {
                     item.classList.add('selected');
-                    item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                    item.scrollIntoView({ block: 'nearest', behavior: 'auto' });
                 } else {
                     item.classList.remove('selected');
                 }
@@ -424,79 +483,51 @@
         }
 
         function openSubmenu(menu) {
-            currentMenu = menu;
+            if (menu === 'player') {
+                currentView = 'player';
+                selectedIndex = 0;
+                document.getElementById('mainMenu').classList.add('hidden');
+                document.getElementById('playerSubmenu').classList.remove('hidden');
+                updateMenuItems();
+            }
+        }
+
+        function backToMain() {
+            currentView = 'main';
             selectedIndex = 0;
-            document.getElementById(menu + 'Menu').classList.add('active');
+            document.getElementById('playerSubmenu').classList.add('hidden');
+            document.getElementById('mainMenu').classList.remove('hidden');
             updateMenuItems();
         }
 
-        function closeSubmenu(menu) {
-            currentMenu = 'main';
+        function switchTab(tab) {
+            currentTab = tab;
             selectedIndex = 0;
-            document.getElementById(menu + 'Menu').classList.remove('active');
+            
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('playersTab').classList.toggle('hidden', tab !== 'players');
+            document.getElementById('actionsTab').classList.toggle('hidden', tab !== 'actions');
+            
             updateMenuItems();
+        }
+
+        function toggleOption(element, option) {
+            element.classList.toggle('active');
+            toggleStates[option] = element.classList.contains('active');
+            
+            window.postMessage({
+                action: 'toggle',
+                option: option,
+                state: toggleStates[option]
+            }, '*');
         }
 
         // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                selectedIndex = Math.max(0, selectedIndex - 1);
-                updateSelection();
-            } else if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                selectedIndex = Math.min(menuItems.length - 1, selectedIndex + 1);
-                updateSelection();
-            } else if (e.key === 'ArrowRight' || e.key === 'Enter') {
-                e.preventDefault();
-                if (currentMenu === 'main') {
-                    const selectedItem = menuItems[selectedIndex];
-                    if (selectedItem && !selectedItem.classList.contains('search')) {
-                        const menuName = ['player', 'server', 'weapon', 'combat', 'vehicle', 'visual', 'misc', 'settings'][selectedIndex];
-                        if (menuName) {
-                            openSubmenu(menuName);
-                        }
-                    }
-                }
-            } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
-                e.preventDefault();
-                if (currentMenu !== 'main') {
-                    closeSubmenu(currentMenu);
-                }
-            } else if (e.key === 'Escape') {
-                // Send message back to Lua
-                fetch('https://macho/closeMenu', {
-                    method: 'POST',
-                    body: JSON.stringify({})
-                });
-            }
-        });
-
-        // Initialize on load
-        window.addEventListener('load', function() {
-            updateMenuItems();
-        });
-
-        // Listen for messages from Lua
         window.addEventListener('message', function(event) {
             const data = event.data;
             
-            if (data.action === 'updateMoney') {
-                document.querySelector('.footer-left span').textContent = data.amount;
-            }
-            
-            if (data.action === 'openMenu') {
-                document.querySelector('.menu-container').style.display = 'block';
-                currentMenu = 'main';
-                selectedIndex = 0;
-                updateMenuItems();
-            }
-            
-            if (data.action === 'closeMenu') {
-                document.querySelector('.menu-container').style.display = 'none';
-            }
-
-            // Handle key presses from Lua
             if (data.action === 'keyPress') {
                 const key = data.key;
                 
@@ -506,20 +537,39 @@
                 } else if (key === 'ArrowDown') {
                     selectedIndex = Math.min(menuItems.length - 1, selectedIndex + 1);
                     updateSelection();
-                } else if (key === 'ArrowRight' || key === 'Enter') {
-                    if (currentMenu === 'main') {
-                        const menuNames = ['player', 'server', 'weapon', 'combat', 'vehicle', 'visual', 'misc', 'settings'];
-                        if (selectedIndex < menuNames.length) {
-                            openSubmenu(menuNames[selectedIndex]);
+                } else if (key === 'Enter') {
+                    const selectedItem = menuItems[selectedIndex];
+                    
+                    if (currentView === 'main') {
+                        const menuName = selectedItem.getAttribute('data-menu');
+                        if (menuName) {
+                            openSubmenu(menuName);
+                        }
+                    } else {
+                        const toggle = selectedItem.querySelector('.toggle');
+                        if (toggle) {
+                            toggle.click();
                         }
                     }
                 } else if (key === 'ArrowLeft') {
-                    if (currentMenu !== 'main') {
-                        closeSubmenu(currentMenu);
+                    if (currentView === 'player') {
+                        backToMain();
+                    }
+                } else if (key === 'ArrowRight') {
+                    if (currentView === 'player') {
+                        const tabs = document.querySelectorAll('.tab');
+                        if (currentTab === 'players') {
+                            tabs[1].click();
+                        } else {
+                            tabs[0].click();
+                        }
                     }
                 }
             }
         });
+
+        // Initialize
+        updateMenuItems();
     </script>
 </body>
 </html>
