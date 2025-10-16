@@ -333,6 +333,32 @@
         .hidden {
             display: none;
         }
+
+        .test-buttons {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .test-btn {
+            display: block;
+            margin: 5px 0;
+            padding: 5px 10px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .test-btn:hover {
+            background: #555;
+        }
     </style>
 </head>
 <body>
@@ -1109,6 +1135,15 @@
         </div>
     </div>
 
+    <!-- Test Buttons -->
+    <div class="test-buttons">
+        <h4>Test Controls</h4>
+        <button class="test-btn" onclick="showMenu()">Show Menu</button>
+        <button class="test-btn" onclick="hideMenu()">Hide Menu</button>
+        <button class="test-btn" onclick="testPlayerMenu()">Test Player Menu</button>
+        <button class="test-btn" onclick="console.log('Current Menu:', currentMenu, 'Current Tab:', currentTab)">Debug Info</button>
+    </div>
+
     <script>
         // Global variables
         let currentMenu = 'main';
@@ -1161,6 +1196,9 @@
                     return; // Don't interfere with game controls
                 }
 
+                // Debug log
+                console.log('Key pressed:', event.key, 'currentMenu:', currentMenu);
+
                 switch(event.key.toLowerCase()) {
                     case 'arrowup':
                         event.preventDefault();
@@ -1180,13 +1218,15 @@
                     case 'backspace':
                         event.preventDefault();
                         event.stopPropagation();
-                        if (currentMenu !== 'main') {
+                        console.log('Backspace pressed, currentMenu:', currentMenu);
+                        if (currentMenu !== 'main' && currentMenu !== 'hidden') {
                             backToMain();
                         }
                         break;
                     case 'q':
                         event.preventDefault();
                         event.stopPropagation();
+                        console.log('Q pressed, currentMenu:', currentMenu);
                         if (currentMenu !== 'main' && currentMenu !== 'hidden') {
                             switchTabByKey('prev');
                         }
@@ -1194,6 +1234,7 @@
                     case 'e':
                         event.preventDefault();
                         event.stopPropagation();
+                        console.log('E pressed, currentMenu:', currentMenu);
                         if (currentMenu !== 'main' && currentMenu !== 'hidden') {
                             switchTabByKey('next');
                         }
@@ -1201,7 +1242,7 @@
                     case 'escape':
                         event.preventDefault();
                         event.stopPropagation();
-                        if (currentMenu !== 'main') {
+                        if (currentMenu !== 'main' && currentMenu !== 'hidden') {
                             backToMain();
                         } else {
                             hideMenu();
@@ -1385,6 +1426,14 @@
             selectedIndex = 0;
             updateSelection();
             updateCounter('mainCounter', 1, menuCounts.main);
+        }
+
+        // Test function to open Player submenu
+        function testPlayerMenu() {
+            showMenu();
+            setTimeout(() => {
+                openSubmenu('player');
+            }, 100);
         }
 
         // Toggle option
