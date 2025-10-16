@@ -896,4 +896,158 @@
                 <div class="submenu-item">
                     <span class="menu-item-text">Motion Blur</span>
                     <div class="toggle" onclick="toggleOption(this, 'motionblur')">
-                        <div class="toggle-s
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Fog</span>
+                    <div class="toggle" onclick="toggleOption(this, 'nofog')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-list hidden" id="visualWorldTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">No Rain</span>
+                    <div class="toggle" onclick="toggleOption(this, 'norain')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Clouds</span>
+                    <div class="toggle" onclick="toggleOption(this, 'noclouds')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Time Changer</span>
+                    <div class="toggle" onclick="toggleOption(this, 'timechanger')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Weather Changer</span>
+                    <div class="toggle" onclick="toggleOption(this, 'weatherchanger')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Remove Objects</span>
+                    <div class="toggle" onclick="toggleOption(this, 'removeobjects')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+            </div>
+            <span id="visualCounter">1/5</span>
+        </div>
+    </div>
+
+    <!-- Miscellaneous Submenu -->
+    <div class="submenu-container hidden" id="miscSubmenu">
+        <div class="submenu-header" onclick="backToMain()">
+            <span class="back-arrow">‹</span>
+            <span>Miscellaneous Options</span>
+            <span class="mini-logo">NEXUS</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('miscTeleport')">
+                Teleport
+                <span class="tab-hint">Q</span>
+            </div>
+            <div class="tab" onclick="switchTab('miscUtility')">
+                Utility
+                <span class="tab-hint">E</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="menu-list" id="miscTeleportTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Teleport to Waypoint</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Teleport to Player</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Teleport to Vehicle</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Save Location</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Load Location</span>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+
+            <div class="menu-list hidden" id="miscUtilityTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Heal Player</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Give Money</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Clear Wanted Level</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Clean Player</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Fix Vehicle</span>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+            </div>
+            <span id="miscCounter">1/5</span>
+        </div>
+    </div>
+
+    <!-- Settings Submenu -->
+    <div class="submenu-container hidden" id="settingsSubmenu">
+        <div class="submenu-header" onclick="backToMain()">
+            <span class="back-arrow">‹</span>
+            <span>Settings Options</span>
+            <span class="mini-logo">NEXUS</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('settingsGeneral')">
+                General
+                <span class="tab-hint">Q</span>
+            </div>
+            <div class="tab" onclick="switchTab('settingsAdvanced')">
+                Advanced
+                <span class="tab-hint">E</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="menu-list" id="settingsGeneralTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Menu Theme</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <s
