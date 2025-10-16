@@ -641,4 +641,555 @@
                     <span class="menu-item-text">Teleport Gun</span>
                     <div class="toggle" onclick="toggleOption(this, 'teleportgun')">
                         <div class="toggle-slider"></div>
-        
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Gravity Gun</span>
+                    <div class="toggle" onclick="toggleOption(this, 'gravitygun')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">One Shot Kill</span>
+                    <div class="toggle" onclick="toggleOption(this, 'oneshotkill')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+            </div>
+            <span id="weaponCounter">1/5</span>
+        </div>
+    </div>
+
+    <!-- Combat Submenu -->
+    <div class="submenu-container hidden" id="combatSubmenu">
+        <div class="submenu-header" onclick="backToMain()">
+            <span class="back-arrow">‹</span>
+            <span>Combat Options</span>
+            <span class="mini-logo">PHANTOM</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('combatAim')">
+                Aim
+                <span class="tab-hint">Q</span>
+            </div>
+            <div class="tab" onclick="switchTab('combatESP')">
+                ESP
+                <span class="tab-hint">E</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="menu-list" id="combatAimTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Aimbot</span>
+                    <div class="toggle" onclick="toggleOption(this, 'aimbot')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Silent Aim</span>
+                    <div class="toggle" onclick="toggleOption(this, 'silentaim')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Triggerbot</span>
+                    <div class="toggle" onclick="toggleOption(this, 'triggerbot')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Kill Aura</span>
+                    <div class="toggle" onclick="toggleOption(this, 'killaura')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Auto Shoot</span>
+                    <div class="toggle" onclick="toggleOption(this, 'autoshoot')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-list hidden" id="combatESPTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">ESP Players</span>
+                    <div class="toggle" onclick="toggleOption(this, 'espplayers')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">ESP Names</span>
+                    <div class="toggle" onclick="toggleOption(this, 'espnames')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">ESP Lines</span>
+                    <div class="toggle" onclick="toggleOption(this, 'esplines')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">ESP Distance</span>
+                    <div class="toggle" onclick="toggleOption(this, 'espdistance')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">ESP Health</span>
+                    <div class="toggle" onclick="toggleOption(this, 'esphealth')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+            </div>
+            <span id="combatCounter">1/5</span>
+        </div>
+    </div>
+
+    <!-- Vehicle Submenu -->
+    <div class="submenu-container hidden" id="vehicleSubmenu">
+        <div class="submenu-header" onclick="backToMain()">
+            <span class="back-arrow">‹</span>
+            <span>Vehicle Options</span>
+            <span class="mini-logo">PHANTOM</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('vehicleMain')">
+                Main
+                <span class="tab-hint">Q</span>
+            </div>
+            <div class="tab" onclick="switchTab('vehicleMods')">
+                Mods
+                <span class="tab-hint">E</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="menu-list" id="vehicleMainTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">God Mode</span>
+                    <div class="toggle" onclick="toggleOption(this, 'vehiclegod')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Super Speed</span>
+                    <div class="toggle" onclick="toggleOption(this, 'vehiclespeed')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Fly Mode</span>
+                    <div class="toggle" onclick="toggleOption(this, 'vehiclefly')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Rainbow RGB</span>
+                    <div class="toggle" onclick="toggleOption(this, 'vehiclergb')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Spawn Vehicle</span>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+
+            <div class="menu-list hidden" id="vehicleModsTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Boost</span>
+                    <div class="toggle" onclick="toggleOption(this, 'vehicleboost')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Flip</span>
+                    <div class="toggle" onclick="toggleOption(this, 'nofilp')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Instant Brake</span>
+                    <div class="toggle" onclick="toggleOption(this, 'instantbrake')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Drive on Water</span>
+                    <div class="toggle" onclick="toggleOption(this, 'driveonwater')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Damage</span>
+                    <div class="toggle" onclick="toggleOption(this, 'nodamage')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+            </div>
+            <span id="vehicleCounter">1/5</span>
+        </div>
+    </div>
+
+    <!-- Visual Submenu -->
+    <div class="submenu-container hidden" id="visualSubmenu">
+        <div class="submenu-header" onclick="backToMain()">
+            <span class="back-arrow">‹</span>
+            <span>Visual Options</span>
+            <span class="mini-logo">PHANTOM</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('visualEffects')">
+                Effects
+                <span class="tab-hint">Q</span>
+            </div>
+            <div class="tab" onclick="switchTab('visualWorld')">
+                World
+                <span class="tab-hint">E</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="menu-list" id="visualEffectsTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Night Vision</span>
+                    <div class="toggle" onclick="toggleOption(this, 'nightvision')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Thermal Vision</span>
+                    <div class="toggle" onclick="toggleOption(this, 'thermalvision')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">X-Ray Vision</span>
+                    <div class="toggle" onclick="toggleOption(this, 'xrayvision')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Motion Blur</span>
+                    <div class="toggle" onclick="toggleOption(this, 'motionblur')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Fog</span>
+                    <div class="toggle" onclick="toggleOption(this, 'nofog')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-list hidden" id="visualWorldTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">No Rain</span>
+                    <div class="toggle" onclick="toggleOption(this, 'norain')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Clouds</span>
+                    <div class="toggle" onclick="toggleOption(this, 'noclouds')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Time Changer</span>
+                    <div class="toggle" onclick="toggleOption(this, 'timechanger')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Weather Changer</span>
+                    <div class="toggle" onclick="toggleOption(this, 'weatherchanger')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Remove Objects</span>
+                    <div class="toggle" onclick="toggleOption(this, 'removeobjects')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+            </div>
+            <span id="visualCounter">1/5</span>
+        </div>
+    </div>
+
+    <!-- Miscellaneous Submenu -->
+    <div class="submenu-container hidden" id="miscSubmenu">
+        <div class="submenu-header" onclick="backToMain()">
+            <span class="back-arrow">‹</span>
+            <span>Miscellaneous Options</span>
+            <span class="mini-logo">PHANTOM</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('miscTeleport')">
+                Teleport
+                <span class="tab-hint">Q</span>
+            </div>
+            <div class="tab" onclick="switchTab('miscUtility')">
+                Utility
+                <span class="tab-hint">E</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="menu-list" id="miscTeleportTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Teleport to Waypoint</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Teleport to Player</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Teleport to Vehicle</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Save Location</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Load Location</span>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+
+            <div class="menu-list hidden" id="miscUtilityTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Heal Player</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Give Money</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Clear Wanted Level</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Clean Player</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Fix Vehicle</span>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+            </div>
+            <span id="miscCounter">1/5</span>
+        </div>
+    </div>
+
+    <!-- Settings Submenu -->
+    <div class="submenu-container hidden" id="settingsSubmenu">
+        <div class="submenu-header" onclick="backToMain()">
+            <span class="back-arrow">‹</span>
+            <span>Settings Options</span>
+            <span class="mini-logo">PHANTOM</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('settingsGeneral')">
+                General
+                <span class="tab-hint">Q</span>
+            </div>
+            <div class="tab" onclick="switchTab('settingsAdvanced')">
+                Advanced
+                <span class="tab-hint">E</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="menu-list" id="settingsGeneralTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Menu Theme</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Language</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Keybinds</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Notifications</span>
+                    <div class="toggle" onclick="toggleOption(this, 'notifications')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Auto Save</span>
+                    <div class="toggle" onclick="toggleOption(this, 'autosave')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-list hidden" id="settingsAdvancedTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Debug Mode</span>
+                    <div class="toggle" onclick="toggleOption(this, 'debugmode')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Safe Mode</span>
+                    <div class="toggle" onclick="toggleOption(this, 'safemode')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Performance Mode</span>
+                    <div class="toggle" onclick="toggleOption(this, 'performancemode')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Reset Settings</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Export Config</span>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+            </div>
+            <span id="settingsCounter">1/5</span>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentMenu = 'main';
+        let currentTab = 'players';
+        let selectedIndex = 0;
+        let menuItems = [];
+        let menuCounts = {
+            main: 8,
+            player: 5,
+            server: 5,
+            weapon: 5,
+            combat: 5,
+            vehicle: 5,
+            visual: 5,
+            misc: 5,
+            settings: 5
+        };
+
+        // Tab configurations for each menu
+        const tabConfigs = {
+            player: ['players', 'actions'],
+            server: ['serverProtection', 'serverTrolling'],
+            weapon: ['weaponMain', 'weaponMods'],
+            combat: ['combatAim', 'combatESP'],
+            vehicle: ['vehicleMain', 'vehicleMods'],
+            visual: ['visualEffects', 'visualWorld'],
+            misc: ['miscTeleport', 'miscUtility'],
+            settings: ['settingsGeneral', 'settingsAdvanced']
+        };
+
+        // Initialize menu
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMainMenu();
+            updateCounter('mainCounter', 1, menuCounts.main);
+            setupKeyboardListeners();
+        });
+
+        // Setup keyboard event listeners
+        function setupKeyboardListeners() {
+            document.addEventListener('keydown', function(event) {
+                switch(event.key.toLowerCase()) {
+                    case 'arrowup':
+                        event.preventDefault();
+                        navigateMenu('up');
+                        break;
+                    case 'arrowdown':
+                        event.preventDefault();
+                        navigateMenu('down');
+                        break;
+                    case 'enter':
+                        event.preventDefault();
+                        navigateMenu('enter');
+                        break;
+                    case 'backspace':
+                        event.preventDefault();
+                        if (currentMenu !== 'main') {
+                            backToMain();
+                        }
+                        break;
+                    case 'q':
+                        event.preventDefault();
+                        if (currentMenu !== 'main') {
+                            switchTabByKey('prev');
+                        }
+                        break;
+                    case 'e':
+                        event.preventDefault();
+                        if (currentMenu !== 'main') {
+                            switchTabByKey('next');
+                        }
+                        break;
+                }
+            });
+        }
+
+        // Initialize main menu navigation
+        function initializeMainMenu() {
+            menuItems = document.querySelectorAll('#mainMenu .menu-item');
+            selectedIndex = 0;
+            updateSelection();
+        }
+
+        // Update selection highlighting
+        function upd
