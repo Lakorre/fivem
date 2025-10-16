@@ -1135,9 +1135,10 @@
         </div>
     </div>
 
-    <!-- Test Buttons -->
+    <!-- Test Buttons (Remove in production) -->
     <div class="test-buttons">
-        <h4>Test Controls</h4>
+        <h4>MACHO Test Controls</h4>
+        <button class="test-btn" onclick="MachoToggleMenu()">Toggle Menu</button>
         <button class="test-btn" onclick="showMenu()">Show Menu</button>
         <button class="test-btn" onclick="hideMenu()">Hide Menu</button>
         <button class="test-btn" onclick="testPlayerMenu()">Test Player Menu</button>
@@ -1184,20 +1185,14 @@
             hideMenu();
         });
 
-        // Setup keyboard event listeners
+        // MACHO Integration
+        let isMenuVisible = false;
+
+        // Setup keyboard event listeners for MACHO
         function setupKeyboardListeners() {
             document.addEventListener('keydown', function(event) {
-                // Check if menu is visible
-                const mainMenu = document.getElementById('mainMenu');
-                const submenuVisible = document.querySelector('.submenu-container:not(.hidden)');
-                
-                // Only handle keys if menu is visible
-                if (mainMenu.classList.contains('hidden') && !submenuVisible) {
-                    return; // Don't interfere with game controls
-                }
-
-                // Debug log
-                console.log('Key pressed:', event.key, 'currentMenu:', currentMenu);
+                // Only handle keys when menu is visible
+                if (!isMenuVisible) return;
 
                 switch(event.key.toLowerCase()) {
                     case 'arrowup':
@@ -1218,35 +1213,28 @@
                     case 'backspace':
                         event.preventDefault();
                         event.stopPropagation();
-                        console.log('Backspace pressed, currentMenu:', currentMenu);
-                        if (currentMenu !== 'main' && currentMenu !== 'hidden') {
+                        if (currentMenu !== 'main') {
                             backToMain();
                         }
                         break;
                     case 'q':
                         event.preventDefault();
                         event.stopPropagation();
-                        console.log('Q pressed, currentMenu:', currentMenu);
-                        if (currentMenu !== 'main' && currentMenu !== 'hidden') {
+                        if (currentMenu !== 'main') {
                             switchTabByKey('prev');
                         }
                         break;
                     case 'e':
                         event.preventDefault();
                         event.stopPropagation();
-                        console.log('E pressed, currentMenu:', currentMenu);
-                        if (currentMenu !== 'main' && currentMenu !== 'hidden') {
+                        if (currentMenu !== 'main') {
                             switchTabByKey('next');
                         }
                         break;
                     case 'escape':
                         event.preventDefault();
                         event.stopPropagation();
-                        if (currentMenu !== 'main' && currentMenu !== 'hidden') {
-                            backToMain();
-                        } else {
-                            hideMenu();
-                        }
+                        hideMenu();
                         break;
                 }
             });
@@ -1417,6 +1405,7 @@
             submenus.forEach(submenu => submenu.classList.add('hidden'));
             
             currentMenu = 'hidden';
+            isMenuVisible = false;
         }
 
         // Show menu
@@ -1424,6 +1413,7 @@
             document.getElementById('mainMenu').classList.remove('hidden');
             currentMenu = 'main';
             selectedIndex = 0;
+            isMenuVisible = true;
             updateSelection();
             updateCounter('mainCounter', 1, menuCounts.main);
         }
@@ -1436,10 +1426,31 @@
             }, 100);
         }
 
-        // Toggle option
+        // MACHO Integration Functions
+        function MachoToggleMenu() {
+            if (isMenuVisible) {
+                hideMenu();
+            } else {
+                showMenu();
+            }
+        }
+
+        // Global functions for MACHO
+        window.MachoToggleMenu = MachoToggleMenu;
+        window.MachoToggleOption = toggleOption;
+        window.MachoShowMenu = showMenu;
+        window.MachoHideMenu = hideMenu;
+
+        // Toggle option - MACHO Integration
         function toggleOption(toggle, optionName) {
             toggle.classList.toggle('active');
-            console.log(`Toggled ${optionName}: ${toggle.classList.contains('active')}`);
+            const isActive = toggle.classList.contains('active');
+            console.log(`Toggled ${optionName}: ${isActive}`);
+            
+            // Send to MACHO system (replace with your actual MACHO commands)
+            if (typeof MachoSetOption !== 'undefined') {
+                MachoSetOption(optionName, isActive);
+            }
         }
 
         // Update counter
