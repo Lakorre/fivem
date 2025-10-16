@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="ar" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHANTOM Menu</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
+        // Initialize menu
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMainMenu();
+            updateCounter('mainCounter', 1, menuCounts.main);
+            setupKeyboardListeners();
+            
+            // Hide menu by default for FiveM
+            hideMenu();
+        });       font-family: 'Arial', sans-serif;
             background: transparent;
             display: flex;
             justify-content: flex-start;
@@ -21,6 +15,11 @@
             color: #fff;
             margin: 0;
             padding: 50px;
+            pointer-events: none; /* Allow clicks to pass through when menu is hidden */
+        }
+
+        .menu-container, .submenu-container {
+            pointer-events: auto; /* Enable clicks only on menu elements */
         }
 
         .menu-container {
@@ -1144,40 +1143,64 @@
             initializeMainMenu();
             updateCounter('mainCounter', 1, menuCounts.main);
             setupKeyboardListeners();
+            
+            // Hide menu by default for FiveM
+            hideMenu();
         });
 
         // Setup keyboard event listeners
         function setupKeyboardListeners() {
             document.addEventListener('keydown', function(event) {
+                // Only handle menu keys when menu is visible
+                if (document.getElementById('mainMenu').classList.contains('hidden') && 
+                    !document.querySelector('.submenu-container:not(.hidden)')) {
+                    return; // Don't interfere with game controls when menu is hidden
+                }
+
                 switch(event.key.toLowerCase()) {
                     case 'arrowup':
                         event.preventDefault();
+                        event.stopPropagation();
                         navigateMenu('up');
                         break;
                     case 'arrowdown':
                         event.preventDefault();
+                        event.stopPropagation();
                         navigateMenu('down');
                         break;
                     case 'enter':
                         event.preventDefault();
+                        event.stopPropagation();
                         navigateMenu('enter');
                         break;
                     case 'backspace':
                         event.preventDefault();
+                        event.stopPropagation();
                         if (currentMenu !== 'main') {
                             backToMain();
                         }
                         break;
                     case 'q':
                         event.preventDefault();
+                        event.stopPropagation();
                         if (currentMenu !== 'main') {
                             switchTabByKey('prev');
                         }
                         break;
                     case 'e':
                         event.preventDefault();
+                        event.stopPropagation();
                         if (currentMenu !== 'main') {
                             switchTabByKey('next');
+                        }
+                        break;
+                    case 'escape':
+                        event.preventDefault();
+                        event.stopPropagation();
+                        if (currentMenu !== 'main') {
+                            backToMain();
+                        } else {
+                            hideMenu();
                         }
                         break;
                 }
@@ -1321,6 +1344,27 @@
             submenus.forEach(submenu => submenu.classList.add('hidden'));
             
             // Show main menu
+            document.getElementById('mainMenu').classList.remove('hidden');
+            currentMenu = 'main';
+            selectedIndex = 0;
+            updateSelection();
+            updateCounter('mainCounter', 1, menuCounts.main);
+        }
+
+        // Hide menu completely
+        function hideMenu() {
+            // Hide main menu
+            document.getElementById('mainMenu').classList.add('hidden');
+            
+            // Hide all submenus
+            const submenus = document.querySelectorAll('.submenu-container');
+            submenus.forEach(submenu => submenu.classList.add('hidden'));
+            
+            currentMenu = 'hidden';
+        }
+
+        // Show menu
+        function showMenu() {
             document.getElementById('mainMenu').classList.remove('hidden');
             currentMenu = 'main';
             selectedIndex = 0;
