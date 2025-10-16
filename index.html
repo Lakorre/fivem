@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHANTOM Menu</title>
+    <title>AURA Menu</title>
     <style>
         * {
             margin: 0;
@@ -149,6 +149,7 @@
             box-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
         }
 
+        /* Submenu Styles */
         .submenu-container {
             width: 500px;
             background: rgba(0, 0, 0, 0.95);
@@ -158,51 +159,18 @@
         }
 
         .submenu-header {
-            background: linear-gradient(135deg, #3a3a0a 0%, #1a1a0a 100%);
-            padding: 25px 20px;
+            background: rgba(80, 80, 20, 0.6);
+            padding: 15px 20px;
             display: flex;
             align-items: center;
             gap: 15px;
             cursor: pointer;
             border-bottom: 1px solid rgba(255, 230, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submenu-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 230, 0, 0.2) 0%, transparent 70%);
-            animation: pulse 2s ease-in-out infinite;
         }
 
         .back-arrow {
             color: #FFE600;
             font-size: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .submenu-header span:not(.back-arrow):not(.mini-logo) {
-            position: relative;
-            z-index: 1;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .mini-logo {
-            margin-left: auto;
-            font-size: 28px;
-            font-weight: bold;
-            color: #FFE600;
-            text-shadow: 0 0 15px #FFE600, 0 0 30px #FFE600;
-            letter-spacing: 4px;
-            position: relative;
-            z-index: 1;
         }
 
         .tabs {
@@ -333,39 +301,13 @@
         .hidden {
             display: none;
         }
-
-        .test-buttons {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 9999;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            border-radius: 5px;
-            color: white;
-        }
-
-        .test-btn {
-            display: block;
-            margin: 5px 0;
-            padding: 5px 10px;
-            background: #333;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        .test-btn:hover {
-            background: #555;
-        }
     </style>
 </head>
 <body>
     <!-- Main Menu -->
     <div class="menu-container" id="mainMenu">
         <div class="header">
-            <div class="logo">PHANTOM</div>
+            <div class="logo">AURA</div>
         </div>
 
         <div class="menu-title">Main menu</div>
@@ -418,7 +360,6 @@
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
             <span>Player Options</span>
-            <span class="mini-logo">PHANTOM</span>
         </div>
 
         <div class="tabs">
@@ -464,6 +405,19 @@
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Teleport To Player</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Clone Player</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Animations</span>
+                    <span class="menu-item-value">Jerk Off</span>
+                    <span class="arrow">‹ ›</span>
+                </div>
             </div>
 
             <div class="menu-list hidden" id="actionsTab">
@@ -497,6 +451,18 @@
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Teleport Waypoint</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Heal Player</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Spawn Vehicle</span>
+                    <span class="arrow">›</span>
+                </div>
             </div>
         </div>
 
@@ -504,7 +470,7 @@
             <div class="footer-left">
                 <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
             </div>
-            <span id="playerCounter">1/5</span>
+            <span id="playerCounter">1/9</span>
         </div>
     </div>
 
@@ -513,7 +479,6 @@
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
             <span>Server Options</span>
-            <span class="mini-logo">PHANTOM</span>
         </div>
 
         <div class="tabs">
@@ -604,7 +569,6 @@
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
             <span>Weapon Options</span>
-            <span class="mini-logo">PHANTOM</span>
         </div>
 
         <div class="tabs">
@@ -621,6 +585,10 @@
         <div class="content">
             <div class="menu-list" id="weaponMainTab">
                 <div class="submenu-item selected">
+                    <span class="menu-item-text">Give All Weapons</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
                     <span class="menu-item-text">Infinite Ammo</span>
                     <div class="toggle" onclick="toggleOption(this, 'infiniteammo')">
                         <div class="toggle-slider"></div>
@@ -643,10 +611,6 @@
                     <div class="toggle" onclick="toggleOption(this, 'norecoil')">
                         <div class="toggle-slider"></div>
                     </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Give All Weapons</span>
-                    <span class="arrow">›</span>
                 </div>
             </div>
 
@@ -697,7 +661,6 @@
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
             <span>Combat Options</span>
-            <span class="mini-logo">PHANTOM</span>
         </div>
 
         <div class="tabs">
@@ -792,7 +755,6 @@
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
             <span>Vehicle Options</span>
-            <span class="mini-logo">PHANTOM</span>
         </div>
 
         <div class="tabs">
@@ -885,7 +847,6 @@
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
             <span>Visual Options</span>
-            <span class="mini-logo">PHANTOM</span>
         </div>
 
         <div class="tabs">
@@ -980,7 +941,6 @@
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
             <span>Miscellaneous Options</span>
-            <span class="mini-logo">PHANTOM</span>
         </div>
 
         <div class="tabs">
@@ -1055,7 +1015,6 @@
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
             <span>Settings Options</span>
-            <span class="mini-logo">PHANTOM</span>
         </div>
 
         <div class="tabs">
@@ -1135,16 +1094,6 @@
         </div>
     </div>
 
-    <!-- Test Buttons (Remove in production) -->
-    <div class="test-buttons">
-        <h4>MACHO Test Controls</h4>
-        <button class="test-btn" onclick="MachoToggleMenu()">Toggle Menu</button>
-        <button class="test-btn" onclick="showMenu()">Show Menu</button>
-        <button class="test-btn" onclick="hideMenu()">Hide Menu</button>
-        <button class="test-btn" onclick="testPlayerMenu()">Test Player Menu</button>
-        <button class="test-btn" onclick="console.log('Current Menu:', currentMenu, 'Current Tab:', currentTab)">Debug Info</button>
-    </div>
-
     <script>
         // Global variables
         let currentMenu = 'main';
@@ -1153,7 +1102,7 @@
         let menuItems = [];
         let menuCounts = {
             main: 8,
-            player: 5,
+            player: 9,
             server: 5,
             weapon: 5,
             combat: 5,
@@ -1175,18 +1124,16 @@
             settings: ['settingsGeneral', 'settingsAdvanced']
         };
 
+        // MACHO Integration
+        let isMenuVisible = false;
+
         // Initialize menu
         document.addEventListener('DOMContentLoaded', function() {
             initializeMainMenu();
             updateCounter('mainCounter', 1, menuCounts.main);
             setupKeyboardListeners();
-            
-            // Hide menu by default for FiveM
             hideMenu();
         });
-
-        // MACHO Integration
-        let isMenuVisible = false;
 
         // Setup keyboard event listeners for MACHO
         function setupKeyboardListeners() {
@@ -1307,12 +1254,7 @@
         // Switch between tabs using keyboard
         function switchTabByKey(direction) {
             const tabs = tabConfigs[currentMenu];
-            console.log('switchTabByKey called:', direction, 'currentMenu:', currentMenu, 'tabs:', tabs);
-            
-            if (!tabs || tabs.length < 2) {
-                console.log('No tabs found or less than 2 tabs');
-                return;
-            }
+            if (!tabs || tabs.length < 2) return;
             
             const currentTabIndex = tabs.indexOf(currentTab);
             let newTabIndex;
@@ -1324,7 +1266,6 @@
             }
             
             const newTab = tabs[newTabIndex];
-            console.log('Switching to tab:', newTab);
             switchTab(newTab);
         }
 
@@ -1381,7 +1322,6 @@
 
         // Go back to main menu
         function backToMain() {
-            console.log('backToMain called');
             // Hide all submenus
             const submenus = document.querySelectorAll('.submenu-container');
             submenus.forEach(submenu => submenu.classList.add('hidden'));
@@ -1416,14 +1356,6 @@
             isMenuVisible = true;
             updateSelection();
             updateCounter('mainCounter', 1, menuCounts.main);
-        }
-
-        // Test function to open Player submenu
-        function testPlayerMenu() {
-            showMenu();
-            setTimeout(() => {
-                openSubmenu('player');
-            }, 100);
         }
 
         // MACHO Integration Functions
