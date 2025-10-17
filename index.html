@@ -1,903 +1,51 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Macho Menu</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: transparent;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            min-height: 100vh;
-            color: #fff;
-            margin: 0;
-            padding: 50px;
-        }
-
-        .menu-container {
-            width: 400px;
-            background: rgba(0, 0, 0, 0.95);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
-        }
-
-        .header {
-            background: linear-gradient(135deg, #0a3a3a 0%, #051a1a 100%);
-            padding: 40px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.3) 0%, transparent 70%);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        .logo {
-            font-size: 72px;
-            font-weight: bold;
-            color: #00FFFF;
-            text-shadow: 0 0 20px #00FFFF, 0 0 40px #00FFFF, 0 0 60px #00FFFF;
-            letter-spacing: 8px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .submenu-logo {
-            font-size: 36px;
-            font-weight: bold;
-            color: #00FFFF;
-            text-shadow: 0 0 10px #00FFFF;
-            margin-right: 15px;
-        }
-
-        .menu-title {
-            background: rgba(20, 80, 80, 0.6);
-            padding: 12px 20px;
-            font-size: 14px;
-            font-weight: 600;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .menu-items {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .menu-items::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .menu-items::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .menu-items::-webkit-scrollbar-thumb {
-            background: rgba(0, 255, 255, 0.5);
-            border-radius: 3px;
-        }
-
-        .menu-item {
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(20, 40, 40, 0.3);
-            outline: none;
-        }
-
-        .menu-item:hover {
-            background: rgba(20, 80, 80, 0.6);
-            padding-left: 25px;
-        }
-
-        .menu-item.selected {
-            background: linear-gradient(90deg, rgba(20, 180, 180, 0.4) 0%, rgba(20, 80, 80, 0.6) 100%);
-            padding-left: 25px;
-            border-left: 3px solid #00FFFF;
-        }
-
-        .arrow {
-            color: rgba(0, 255, 255, 0.8);
-            font-size: 18px;
-        }
-
-        .footer {
-            background: rgba(10, 20, 20, 0.8);
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            border-top: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .footer-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .coin-icon {
-            width: 24px;
-            height: 24px;
-            background: radial-gradient(circle, #00FFFF 0%, #008B8B 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
-            color: #000;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-
-        /* Submenu Styles */
-        .submenu-container {
-            width: 500px;
-            background: rgba(0, 0, 0, 0.95);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
-        }
-
-        .tabs {
-            display: flex;
-            background: rgba(10, 20, 20, 0.8);
-            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .tab {
-            flex: 1;
-            padding: 15px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-right: 1px solid rgba(0, 255, 255, 0.1);
-            background: rgba(15, 30, 30, 0.5);
-        }
-
-        .tab:last-child {
-            border-right: none;
-        }
-
-        .tab:hover {
-            background: rgba(20, 60, 60, 0.6);
-        }
-
-        .tab.active {
-            background: linear-gradient(180deg, rgba(20, 180, 180, 0.4) 0%, rgba(20, 80, 80, 0.6) 100%);
-            border-bottom: 2px solid #00FFFF;
-        }
-
-        .content {
-            display: flex;
-            height: 400px;
-        }
-
-        .menu-list {
-            flex: 1;
-            overflow-y: auto;
-            background: rgba(8, 15, 15, 0.8);
-        }
-
-        .menu-list::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .menu-list::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .menu-list::-webkit-scrollbar-thumb {
-            background: rgba(0, 255, 255, 0.5);
-            border-radius: 3px;
-        }
-
-        .submenu-item {
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            outline: none;
-        }
-
-        .submenu-item:hover {
-            background: rgba(20, 60, 60, 0.5);
-            padding-left: 25px;
-        }
-
-        .submenu-item.selected {
-            background: linear-gradient(90deg, rgba(20, 180, 180, 0.4) 0%, rgba(20, 80, 80, 0.6) 100%);
-            padding-left: 25px;
-            border-left: 3px solid #00FFFF;
-        }
-
-        .menu-item-text {
-            flex: 1;
-        }
-
-        .menu-item-value {
-            color: rgba(0, 255, 255, 0.8);
-            font-size: 13px;
-            margin: 0 10px;
-        }
-
-        .toggle {
-            width: 44px;
-            height: 24px;
-            background: rgba(100, 100, 100, 0.3);
-            border-radius: 12px;
-            position: relative;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .toggle.active {
-            background: linear-gradient(90deg, #00CED1 0%, #008B8B 100%);
-        }
-
-        .toggle-slider {
-            width: 20px;
-            height: 20px;
-            background: #fff;
-            border-radius: 50%;
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            transition: transform 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .toggle.active .toggle-slider {
-            transform: translateX(20px);
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .submenu-header {
-            background: rgba(20, 80, 80, 0.6);
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .back-arrow {
-            color: #00FFFF;
-            font-size: 20px;
-        }
-
-        .tab-shortcut {
-            font-size: 11px;
-            opacity: 0.6;
-            margin-top: 2px;
-        }
+<script>
+    // إعدادات زر المنيو
+    let menuToggleKey = 'g'; // زر G الافتراضي
+    
+    // وظيفة فتح/إغلاق المنيو
+    function toggleMenu() {
+        const mainMenu = document.getElementById('mainMenu');
+        const submenus = document.querySelectorAll('.submenu-container');
         
-        /* إضافة خيار اختيار زر المنيو */
-        .key-selector {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .key-option {
-            padding: 5px 10px;
-            background: rgba(0, 100, 100, 0.3);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .key-option:hover {
-            background: rgba(0, 150, 150, 0.5);
-        }
-        
-        .key-option.selected {
-            background: rgba(0, 200, 200, 0.7);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-    </style>
-</head>
-<body>
-    <!-- Main Menu -->
-    <div class="menu-container" id="mainMenu">
-        <div class="header">
-            <div class="logo">3z Culz</div>
-        </div>
-
-        <div class="menu-title">MACHO MENU</div>
-        <div class="menu-items">
-            <div class="menu-item selected" data-menu="player">
-                <span>Player</span>
-                <span class="arrow">›</span>
-            </div>
-            <div class="menu-item" data-menu="server">
-                <span>Server</span>
-                <span class="arrow">›</span>
-            </div>
-            <div class="menu-item" data-menu="weapon">
-                <span>Weapon</span>
-                <span class="arrow">›</span>
-            </div>
-            <div class="menu-item" data-menu="combat">
-                <span>Combat</span>
-                <span class="arrow">›</span>
-            </div>
-            <div class="menu-item" data-menu="vehicle">
-                <span>Vehicle</span>
-                <span class="arrow">›</span>
-            </div>
-            <div class="menu-item" data-menu="visual">
-                <span>Visual</span>
-                <span class="arrow">›</span>
-            </div>
-            <div class="menu-item" data-menu="misc">
-                <span>Miscellaneous</span>
-                <span class="arrow">›</span>
-            </div>
-            <div class="menu-item" data-menu="settings">
-                <span>Settings</span>
-                <span class="arrow">›</span>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="footer-left">
-                <div class="coin-icon">$</div>
-                <span>123456</span>
-                <span style="opacity: 0.6;">|  1d,3h ago</span>
-            </div>
-            <span id="mainCounter">1/8</span>
-        </div>
-    </div>
-
-    <!-- Player Submenu with Tabs -->
-    <div class="submenu-container hidden" id="playerSubmenu">
-        <div class="submenu-header" onclick="backToMain()">
-            <span class="back-arrow">‹</span>
-            <span class="submenu-logo">TEST</span>
-            <span>Player Options</span>
-        </div>
-
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('players')">
-                Players
-                <div class="tab-shortcut">[Q]</div>
-            </div>
-            <div class="tab" onclick="switchTab('actions')">
-                Actions
-                <div class="tab-shortcut">[E]</div>
-            </div>
-        </div>
-
-        <div class="content">
-            <!-- Players Tab -->
-            <div class="menu-list" id="playersTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Spectate</span>
-                    <div class="toggle" onclick="toggleOption(this, 'spectate')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Ram Player</span>
-                    <div class="toggle" onclick="toggleOption(this, 'ram')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">God Mode</span>
-                    <div class="toggle" onclick="toggleOption(this, 'godmode')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Infinite Ammo</span>
-                    <div class="toggle" onclick="toggleOption(this, 'infammo')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">No Ragdoll</span>
-                    <div class="toggle" onclick="toggleOption(this, 'noragdoll')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Actions Tab -->
-            <div class="menu-list hidden" id="actionsTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Super Speed</span>
-                    <div class="toggle" onclick="toggleOption(this, 'superspeed')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Infinite Stamina</span>
-                    <div class="toggle" onclick="toggleOption(this, 'stamina')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Super Jump</span>
-                    <div class="toggle" onclick="toggleOption(this, 'superjump')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Invisibility</span>
-                    <div class="toggle" onclick="toggleOption(this, 'invisible')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Night Vision</span>
-                    <div class="toggle" onclick="toggleOption(this, 'nightvision')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">TEST MACHO v1.0</span>
-            </div>
-            <span id="pageCounter">1/5</span>
-        </div>
-    </div>
-
-    <!-- Vehicle Submenu -->
-    <div class="submenu-container hidden" id="vehicleSubmenu">
-        <div class="submenu-header" onclick="backToMain()">
-            <span class="back-arrow">‹</span>
-            <span class="submenu-logo">TEST</span>
-            <span>Vehicle Options</span>
-        </div>
-
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('vehicleMain')">
-                Vehicle
-                <div class="tab-shortcut">[Q]</div>
-            </div>
-            <div class="tab" onclick="switchTab('spawner')">
-                Spawner
-                <div class="tab-shortcut">[E]</div>
-            </div>
-        </div>
-
-        <div class="content">
-            <!-- Vehicle Main Tab -->
-            <div class="menu-list" id="vehicleMainTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Repair Vehicle</span>
-                    <span class="arrow">⚡</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Delete Vehicle</span>
-                    <span class="arrow">🗑️</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">God Mode</span>
-                    <div class="toggle" onclick="toggleOption(this, 'veh_godmode')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Invisible Vehicle</span>
-                    <div class="toggle" onclick="toggleOption(this, 'veh_invisible')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Speed Boost</span>
-                    <div class="toggle" onclick="toggleOption(this, 'veh_speedboost')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Spawner Tab -->
-            <div class="menu-list hidden" id="spawnerTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Spawn Custom Vehicle</span>
-                    <span class="arrow">🚗</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Spawn Random Vehicle</span>
-                    <span class="arrow">🎲</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Spawn Saved Vehicle</span>
-                    <span class="arrow">💾</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Vehicle List</span>
-                    <span class="arrow">📋</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Max Upgrade on Spawn</span>
-                    <div class="toggle" onclick="toggleOption(this, 'spawn_maxupgrade')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">TEST MACHO v1.0</span>
-            </div>
-            <span id="vehicleCounter">1/5</span>
-        </div>
-    </div>
-
-    <!-- Settings Submenu -->
-    <div class="submenu-container hidden" id="settingsSubmenu">
-        <div class="submenu-header" onclick="backToMain()">
-            <span class="back-arrow">‹</span>
-            <span class="submenu-logo">TEST</span>
-            <span>Settings & Design</span>
-        </div>
-
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('appearance')">
-                Appearance
-                <div class="tab-shortcut">[Q]</div>
-            </div>
-            <div class="tab" onclick="switchTab('controls')">
-                Controls
-                <div class="tab-shortcut">[E]</div>
-            </div>
-        </div>
-
-        <div class="content">
-            <!-- Appearance Tab -->
-            <div class="menu-list" id="appearanceTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Menu Theme</span>
-                    <span class="menu-item-value">Blue</span>
-                    <span class="arrow">‹ ›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Menu Opacity</span>
-                    <span class="menu-item-value">80%</span>
-                    <span class="arrow">‹ ›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Menu Position</span>
-                    <span class="menu-item-value">Top Left</span>
-                    <span class="arrow">‹ ›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Show Watermark</span>
-                    <div class="toggle active" onclick="toggleOption(this, 'show_watermark')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Animated Background</span>
-                    <div class="toggle active" onclick="toggleOption(this, 'animated_bg')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Controls Tab -->
-            <div class="menu-list hidden" id="controlsTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Menu Toggle Key</span>
-                    <div class="key-selector">
-                        <div class="key-option selected" data-key="F5">F5</div>
-                        <div class="key-option" data-key="F6">F6</div>
-                        <div class="key-option" data-key="F7">F7</div>
-                        <div class="key-option" data-key="F8">F8</div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Navigation Speed</span>
-                    <span class="menu-item-value">Normal</span>
-                    <span class="arrow">‹ ›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Controller Support</span>
-                    <div class="toggle" onclick="toggleOption(this, 'controller_support')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Mouse Control</span>
-                    <div class="toggle active" onclick="toggleOption(this, 'mouse_control')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Reset Controls</span>
-                    <span class="arrow">🔄</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">TEST MACHO v1.0</span>
-            </div>
-            <span id="settingsCounter">1/5</span>
-        </div>
-    </div>
-
-    <script>
-        let currentView = 'main';
-        let currentTab = 'players';
-        let selectedIndex = 0;
-        let menuItems = [];
-        let toggleStates = {};
-        let isMenuVisible = true;
-        let menuToggleKey = 'F5'; // زر افتراضي لفتح/إغلاق المنيو
-        
-        function updateMenuItems() {
-            if (currentView === 'main') {
-                menuItems = document.querySelectorAll('#mainMenu .menu-item');
-            } else {
-                const activeTab = document.getElementById(currentTab + 'Tab');
-                if (activeTab) {
-                    menuItems = activeTab.querySelectorAll('.submenu-item');
-                }
-            }
-            updateSelection();
-        }
-
-        function updateSelection() {
-            menuItems.forEach((item, index) => {
-                if (index === selectedIndex) {
-                    item.classList.add('selected');
-                    item.scrollIntoView({ block: 'nearest', behavior: 'auto' });
-                } else {
-                    item.classList.remove('selected');
-                }
-            });
-            updatePageCounter();
-        }
-
-        function updatePageCounter() {
-            let counter;
-            if (currentView === 'main') {
-                counter = document.getElementById('mainCounter');
-            } else if (currentView === 'vehicle') {
-                counter = document.getElementById('vehicleCounter');
-            } else if (currentView === 'settings') {
-                counter = document.getElementById('settingsCounter');
-            } else if (currentView === 'player') {
-                counter = document.getElementById('pageCounter');
-            }
-            
-            if (counter && menuItems.length > 0) {
-                counter.textContent = `${selectedIndex + 1}/${menuItems.length}`;
-            }
-        }
-
-        function openSubmenu(menu) {
-            currentView = menu;
-            selectedIndex = 0;
-            
-            document.getElementById('mainMenu').classList.add('hidden');
-            
-            if (menu === 'player') {
-                document.getElementById('playerSubmenu').classList.remove('hidden');
-                currentTab = 'players';
-            } else if (menu === 'vehicle') {
-                document.getElementById('vehicleSubmenu').classList.remove('hidden');
-                currentTab = 'vehicleMain';
-            } else if (menu === 'settings') {
-                document.getElementById('settingsSubmenu').classList.remove('hidden');
-                currentTab = 'appearance';
-            }
-            
-            updateTabs();
-            updateMenuItems();
-        }
-
-        function backToMain() {
+        if (mainMenu.classList.contains('hidden')) {
+            // إظهار المنيو
+            mainMenu.classList.remove('hidden');
+            submenus.forEach(menu => menu.classList.add('hidden'));
             currentView = 'main';
             selectedIndex = 0;
-            
-            document.querySelectorAll('.submenu-container').forEach(menu => {
-                menu.classList.add('hidden');
-            });
-            document.getElementById('mainMenu').classList.remove('hidden');
-            
             updateMenuItems();
+            console.log('Menu opened');
+        } else {
+            // إخفاء المنيو
+            mainMenu.classList.add('hidden');
+            submenus.forEach(menu => menu.classList.add('hidden'));
+            console.log('Menu closed');
         }
-
-        function switchTab(tab) {
-            currentTab = tab;
-            selectedIndex = 0;
-            
-            updateTabs();
-            updateMenuItems();
-        }
-
-        function updateTabs() {
-            const activeSubmenu = document.getElementById(currentView + 'Submenu');
-            if (activeSubmenu) {
-                activeSubmenu.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                activeSubmenu.querySelectorAll('.menu-list').forEach(list => list.classList.add('hidden'));
-                
-                const activeTab = activeSubmenu.querySelector(`.tab[onclick*="${currentTab}"]`);
-                const activeTabContent = document.getElementById(currentTab + 'Tab');
-                
-                if (activeTab) activeTab.classList.add('active');
-                if (activeTabContent) activeTabContent.classList.remove('hidden');
-            }
-        }
-
-        function toggleOption(element, option) {
-            element.classList.toggle('active');
-            toggleStates[option] = element.classList.contains('active');
-            
-            // Send message to Lua (Macho DUI)
-            window.postMessage({
-                action: 'toggleOption',
-                option: option,
-                state: toggleStates[option]
-            }, '*');
-            
-            console.log('Toggle:', option, 'State:', toggleStates[option]);
-        }
-
-        function toggleMenu() {
-            isMenuVisible = !isMenuVisible;
-            const mainMenu = document.getElementById('mainMenu');
-            const submenus = document.querySelectorAll('.submenu-container');
-            
-            if (isMenuVisible) {
-                mainMenu.classList.remove('hidden');
-                // إعادة تعيين العرض الحالي إلى القائمة الرئيسية
-                currentView = 'main';
-                selectedIndex = 0;
-                updateMenuItems();
-            } else {
-                mainMenu.classList.add('hidden');
-                submenus.forEach(menu => menu.classList.add('hidden'));
-            }
-        }
-
-        // وظيفة اختيار زر المنيو
-        function selectMenuKey(key) {
-            menuToggleKey = key;
-            
-            // تحديث الواجهة
-            document.querySelectorAll('.key-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            document.querySelector(`.key-option[data-key="${key}"]`).classList.add('selected');
-            
-            // إرسال الإعداد إلى Lua
-            window.postMessage({
-                action: 'setMenuKey',
-                key: key
-            }, '*');
-            
-            console.log('Menu toggle key set to:', key);
-        }
-
-        // Keyboard navigation
-        function handleKeyPress(key) {
-            switch(key) {
-                case 'ArrowUp':
-                    selectedIndex = Math.max(0, selectedIndex - 1);
-                    updateSelection();
-                    break;
-                    
-                case 'ArrowDown':
-                    selectedIndex = Math.min(menuItems.length - 1, selectedIndex + 1);
-                    updateSelection();
-                    break;
-                    
-                case 'Enter':
-                    const selectedItem = menuItems[selectedIndex];
-                    if (currentView === 'main') {
-                        const menuName = selectedItem.getAttribute('data-menu');
-                        if (menuName) openSubmenu(menuName);
-                    } else {
-                        const toggle = selectedItem.querySelector('.toggle');
-                        if (toggle) {
-                            toggle.click();
-                        } else {
-                            // إذا لم يكن زر تبديل، نفعل العنصر مباشرة
-                            selectedItem.click();
-                        }
-                    }
-                    break;
-                    
-                case 'Backspace':
-                    if (currentView !== 'main') {
-                        backToMain();
-                    }
-                    break;
-                    
-                case 'KeyQ':
-                    if (currentView === 'player') switchTab('players');
-                    else if (currentView === 'vehicle') switchTab('vehicleMain');
-                    else if (currentView === 'settings') switchTab('appearance');
-                    break;
-                    
-                case 'KeyE':
-                    if (currentView === 'player') switchTab('actions');
-                    else if (currentView === 'vehicle') switchTab('spawner');
-                    else if (currentView === 'settings') switchTab('controls');
-                    break;
-
-                case 'Escape':
-                    toggleMenu();
-                    break;
-                    
-                // التحقق من زر فتح/إغلاق المنيو المخصص
-                case menuToggleKey:
-                    toggleMenu();
-                    break;
-            }
-        }
-
-        // Event listeners
-        window.addEventListener('message', function(event) {
-            const data = event.data;
-            if (data.action === 'keyPress') {
-                handleKeyPress(data.key);
-            }
-            
-            // دالة لإظهار/إخفاء المنيو من Lua
-            if (data.action === 'toggleMenu') {
-                toggleMenu();
-            }
-            
-            // تعيين زر المنيو من Lua
-            if (data.action === 'setMenuKey') {
-                selectMenuKey(data.key);
-            }
+        
+        // إرسال حالة المنيو إلى Lua
+        fetch(`https://${GetParentResourceName()}/executeCommand`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                command: 'menuToggled',
+                parameters: { isOpen: !mainMenu.classList.contains('hidden') }
+            })
         });
+    }
 
-        document.addEventListener('keydown', function(event) {
-            // التحقق من زر فتح/إغلاق المنيو أولاً
-            if (event.key === menuToggleKey || event.code === menuToggleKey) {
-                event.preventDefault();
-                toggleMenu();
-                return;
-            }
-            
+    // مستمع لوحة المفاتيح لزر G
+    document.addEventListener('keydown', function(event) {
+        // زر G لفتح/إغلاق المنيو
+        if (event.key.toLowerCase() === 'g' || event.code === 'KeyG') {
+            event.preventDefault();
+            toggleMenu();
+            return;
+        }
+        
+        // الأزرار الأخرى للتنقل (فقط إذا كان المنيو مفتوح)
+        if (!document.getElementById('mainMenu').classList.contains('hidden')) {
             if (['ArrowUp', 'ArrowDown', 'Enter', 'Backspace', 'q', 'Q', 'e', 'E', 'Escape'].includes(event.key)) {
                 event.preventDefault();
                 
@@ -909,26 +57,63 @@
                 
                 handleKeyPress(key);
             }
-        });
+        }
+    });
 
-        // إضافة مستمعين لأزرار اختيار زر المنيو
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.key-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    selectMenuKey(this.getAttribute('data-key'));
-                });
+    // استقبال الأوامر من Lua
+    window.addEventListener('message', function(event) {
+        const data = event.data;
+        
+        if (data.action === 'showMenu') {
+            document.getElementById('mainMenu').classList.remove('hidden');
+            currentView = 'main';
+            selectedIndex = 0;
+            updateMenuItems();
+        }
+        else if (data.action === 'hideMenu') {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.querySelectorAll('.submenu-container').forEach(menu => {
+                menu.classList.add('hidden');
             });
+        }
+        else if (data.action === 'keyPress') {
+            handleKeyPress(data.key);
+        }
+        else if (data.action === 'toggleMenu') {
+            toggleMenu();
+        }
+    });
+
+    // إرسال الأوامر إلى Lua عند النقر على العناصر
+    function executeLuaCommand(command, parameters = {}) {
+        fetch(`https://${GetParentResourceName()}/executeCommand`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                command: command,
+                parameters: parameters
+            })
+        }).then(resp => resp.json()).then(resp => console.log(resp));
+    }
+
+    // تعديل دالة toggleOption لإرسال الأوامر إلى Lua
+    function toggleOption(element, option) {
+        element.classList.toggle('active');
+        const state = element.classList.contains('active');
+        toggleStates[option] = state;
+        
+        // إرسال إلى Lua
+        executeLuaCommand('toggleOption', {
+            option: option,
+            state: state
         });
+    }
 
-        // Initialize
-        updateMenuItems();
-
-        // إخفاء المنيو في البداية (اختياري)
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     setTimeout(() => {
-        //         document.getElementById('mainMenu').classList.remove('hidden');
-        //     }, 100);
-        // });
-    </script>
-</body>
-</html>
+    // إخفاء المنيو في البداية
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('mainMenu').classList.add('hidden');
+        console.log('MACHO MENU loaded - Press G to open');
+    });
+</script>
