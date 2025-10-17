@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA Menu</title>
+    <title>NEXUS Menu</title>
     <style>
         * {
             margin: 0;
@@ -32,7 +32,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #3a3a0a 0%, #1a1a0a 100%);
+            background: linear-gradient(135deg, #0a3a3a 0%, #051a1a 100%);
             padding: 40px 20px;
             text-align: center;
             position: relative;
@@ -46,7 +46,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 230, 0, 0.3) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.3) 0%, transparent 70%);
             animation: pulse 2s ease-in-out infinite;
         }
 
@@ -58,19 +58,27 @@
         .logo {
             font-size: 72px;
             font-weight: bold;
-            color: #FFE600;
-            text-shadow: 0 0 20px #FFE600, 0 0 40px #FFE600, 0 0 60px #FFE600;
+            color: #00FFFF;
+            text-shadow: 0 0 20px #00FFFF, 0 0 40px #00FFFF, 0 0 60px #00FFFF;
             letter-spacing: 8px;
             position: relative;
             z-index: 1;
         }
 
+        .submenu-logo {
+            font-size: 36px;
+            font-weight: bold;
+            color: #00FFFF;
+            text-shadow: 0 0 10px #00FFFF;
+            margin-right: 15px;
+        }
+
         .menu-title {
-            background: rgba(80, 80, 20, 0.6);
+            background: rgba(20, 80, 80, 0.6);
             padding: 12px 20px;
             font-size: 14px;
             font-weight: 600;
-            border-bottom: 1px solid rgba(255, 230, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
         }
 
         .menu-items {
@@ -87,7 +95,7 @@
         }
 
         .menu-items::-webkit-scrollbar-thumb {
-            background: rgba(255, 230, 0, 0.5);
+            background: rgba(0, 255, 255, 0.5);
             border-radius: 3px;
         }
 
@@ -99,34 +107,34 @@
             cursor: pointer;
             transition: all 0.2s ease;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(40, 40, 20, 0.3);
+            background: rgba(20, 40, 40, 0.3);
             outline: none;
         }
 
         .menu-item:hover {
-            background: rgba(80, 80, 20, 0.6);
+            background: rgba(20, 80, 80, 0.6);
             padding-left: 25px;
         }
 
         .menu-item.selected {
-            background: linear-gradient(90deg, rgba(180, 180, 20, 0.4) 0%, rgba(80, 80, 20, 0.6) 100%);
+            background: linear-gradient(90deg, rgba(20, 180, 180, 0.4) 0%, rgba(20, 80, 80, 0.6) 100%);
             padding-left: 25px;
-            border-left: 3px solid #FFE600;
+            border-left: 3px solid #00FFFF;
         }
 
         .arrow {
-            color: rgba(255, 230, 0, 0.8);
+            color: rgba(0, 255, 255, 0.8);
             font-size: 18px;
         }
 
         .footer {
-            background: rgba(20, 20, 10, 0.8);
+            background: rgba(10, 20, 20, 0.8);
             padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 13px;
-            border-top: 1px solid rgba(255, 230, 0, 0.2);
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
         }
 
         .footer-left {
@@ -138,7 +146,7 @@
         .coin-icon {
             width: 24px;
             height: 24px;
-            background: radial-gradient(circle, #FFE600 0%, #B8860B 100%);
+            background: radial-gradient(circle, #00FFFF 0%, #008B8B 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -146,7 +154,7 @@
             font-weight: bold;
             font-size: 14px;
             color: #000;
-            box-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         /* Submenu Styles */
@@ -158,25 +166,10 @@
             box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
         }
 
-        .submenu-header {
-            background: rgba(80, 80, 20, 0.6);
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            border-bottom: 1px solid rgba(255, 230, 0, 0.2);
-        }
-
-        .back-arrow {
-            color: #FFE600;
-            font-size: 20px;
-        }
-
         .tabs {
             display: flex;
-            background: rgba(20, 20, 10, 0.8);
-            border-bottom: 1px solid rgba(255, 230, 0, 0.2);
+            background: rgba(10, 20, 20, 0.8);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
         }
 
         .tab {
@@ -185,9 +178,8 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-right: 1px solid rgba(255, 230, 0, 0.1);
-            background: rgba(30, 30, 15, 0.5);
-            position: relative;
+            border-right: 1px solid rgba(0, 255, 255, 0.1);
+            background: rgba(15, 30, 30, 0.5);
         }
 
         .tab:last-child {
@@ -195,21 +187,12 @@
         }
 
         .tab:hover {
-            background: rgba(60, 60, 20, 0.6);
+            background: rgba(20, 60, 60, 0.6);
         }
 
         .tab.active {
-            background: linear-gradient(180deg, rgba(180, 180, 20, 0.4) 0%, rgba(80, 80, 20, 0.6) 100%);
-            border-bottom: 2px solid #FFE600;
-        }
-
-        .tab-hint {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            font-size: 10px;
-            color: rgba(255, 230, 0, 0.6);
-            font-weight: bold;
+            background: linear-gradient(180deg, rgba(20, 180, 180, 0.4) 0%, rgba(20, 80, 80, 0.6) 100%);
+            border-bottom: 2px solid #00FFFF;
         }
 
         .content {
@@ -220,7 +203,7 @@
         .menu-list {
             flex: 1;
             overflow-y: auto;
-            background: rgba(15, 15, 8, 0.8);
+            background: rgba(8, 15, 15, 0.8);
         }
 
         .menu-list::-webkit-scrollbar {
@@ -232,7 +215,7 @@
         }
 
         .menu-list::-webkit-scrollbar-thumb {
-            background: rgba(255, 230, 0, 0.5);
+            background: rgba(0, 255, 255, 0.5);
             border-radius: 3px;
         }
 
@@ -248,14 +231,14 @@
         }
 
         .submenu-item:hover {
-            background: rgba(60, 60, 20, 0.5);
+            background: rgba(20, 60, 60, 0.5);
             padding-left: 25px;
         }
 
         .submenu-item.selected {
-            background: linear-gradient(90deg, rgba(180, 180, 20, 0.4) 0%, rgba(80, 80, 20, 0.6) 100%);
+            background: linear-gradient(90deg, rgba(20, 180, 180, 0.4) 0%, rgba(20, 80, 80, 0.6) 100%);
             padding-left: 25px;
-            border-left: 3px solid #FFE600;
+            border-left: 3px solid #00FFFF;
         }
 
         .menu-item-text {
@@ -263,7 +246,7 @@
         }
 
         .menu-item-value {
-            color: rgba(255, 230, 0, 0.8);
+            color: rgba(0, 255, 255, 0.8);
             font-size: 13px;
             margin: 0 10px;
         }
@@ -279,7 +262,7 @@
         }
 
         .toggle.active {
-            background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+            background: linear-gradient(90deg, #00CED1 0%, #008B8B 100%);
         }
 
         .toggle-slider {
@@ -301,13 +284,34 @@
         .hidden {
             display: none;
         }
+
+        .submenu-header {
+            background: rgba(20, 80, 80, 0.6);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .back-arrow {
+            color: #00FFFF;
+            font-size: 20px;
+        }
+
+        .tab-shortcut {
+            font-size: 11px;
+            opacity: 0.6;
+            margin-top: 2px;
+        }
     </style>
 </head>
 <body>
     <!-- Main Menu -->
     <div class="menu-container" id="mainMenu">
         <div class="header">
-            <div class="logo">AURA</div>
+            <div class="logo">NEXUS</div>
         </div>
 
         <div class="menu-title">Main menu</div>
@@ -355,35 +359,49 @@
         </div>
     </div>
 
-    <!-- Player Submenu -->
+    <!-- Player Submenu with Tabs -->
     <div class="submenu-container hidden" id="playerSubmenu">
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
+            <span class="submenu-logo">NEXUS</span>
             <span>Player Options</span>
         </div>
 
         <div class="tabs">
             <div class="tab active" onclick="switchTab('players')">
                 Players
-                <span class="tab-hint">Q</span>
+                <div class="tab-shortcut">[Q]</div>
             </div>
             <div class="tab" onclick="switchTab('actions')">
                 Actions
-                <span class="tab-hint">E</span>
+                <div class="tab-shortcut">[E]</div>
             </div>
         </div>
 
         <div class="content">
+            <!-- Players Tab -->
             <div class="menu-list" id="playersTab">
                 <div class="submenu-item selected">
+                    <span class="menu-item-text">Spectate</span>
+                    <div class="toggle" onclick="toggleOption(this, 'spectate')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Ram Player</span>
+                    <div class="toggle" onclick="toggleOption(this, 'ram')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
                     <span class="menu-item-text">God Mode</span>
                     <div class="toggle" onclick="toggleOption(this, 'godmode')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Invisible</span>
-                    <div class="toggle" onclick="toggleOption(this, 'invisible')">
+                    <span class="menu-item-text">Infinite Ammo</span>
+                    <div class="toggle" onclick="toggleOption(this, 'infammo')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
@@ -394,19 +412,7 @@
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Spectate</span>
-                    <div class="toggle" onclick="toggleOption(this, 'spectate')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Freeze Player</span>
-                    <div class="toggle" onclick="toggleOption(this, 'freezeplayer')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Teleport To Player</span>
+                    <span class="menu-item-text">Teleport To</span>
                     <span class="arrow">›</span>
                 </div>
                 <div class="submenu-item">
@@ -415,21 +421,38 @@
                 </div>
                 <div class="submenu-item">
                     <span class="menu-item-text">Animations</span>
-                    <span class="menu-item-value">Jerk Off</span>
+                    <span class="menu-item-value">Default</span>
                     <span class="arrow">‹ ›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Attach Vehicles</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Steal Vehicle</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Give Weapons</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Kick Player</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Freeze Player</span>
+                    <div class="toggle" onclick="toggleOption(this, 'freeze')">
+                        <div class="toggle-slider"></div>
+                    </div>
                 </div>
             </div>
 
+            <!-- Actions Tab -->
             <div class="menu-list hidden" id="actionsTab">
                 <div class="submenu-item selected">
                     <span class="menu-item-text">Super Speed</span>
                     <div class="toggle" onclick="toggleOption(this, 'superspeed')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Super Jump</span>
-                    <div class="toggle" onclick="toggleOption(this, 'superjump')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
@@ -440,14 +463,26 @@
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Noclip</span>
-                    <div class="toggle" onclick="toggleOption(this, 'noclip')">
+                    <span class="menu-item-text">Super Jump</span>
+                    <div class="toggle" onclick="toggleOption(this, 'superjump')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Walk Through Walls</span>
-                    <div class="toggle" onclick="toggleOption(this, 'walkthrough')">
+                    <span class="menu-item-text">Invisibility</span>
+                    <div class="toggle" onclick="toggleOption(this, 'invisible')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Night Vision</span>
+                    <div class="toggle" onclick="toggleOption(this, 'nightvision')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Thermal Vision</span>
+                    <div class="toggle" onclick="toggleOption(this, 'thermal')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
@@ -460,17 +495,37 @@
                     <span class="arrow">›</span>
                 </div>
                 <div class="submenu-item">
+                    <span class="menu-item-text">Change Skin</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
                     <span class="menu-item-text">Spawn Vehicle</span>
                     <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Custom Weather</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">No Clip</span>
+                    <div class="toggle" onclick="toggleOption(this, 'noclip')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Fast Run</span>
+                    <div class="toggle" onclick="toggleOption(this, 'fastrun')">
+                        <div class="toggle-slider"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="footer">
             <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+                <span style="opacity: 0.7; font-size: 12px;">NEXUS v2.1 | Premium Edition</span>
             </div>
-            <span id="playerCounter">1/9</span>
+            <span id="pageCounter">1/13</span>
         </div>
     </div>
 
@@ -478,170 +533,76 @@
     <div class="submenu-container hidden" id="serverSubmenu">
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
+            <span class="submenu-logo">NEXUS</span>
             <span>Server Options</span>
         </div>
 
         <div class="tabs">
-            <div class="tab active" onclick="switchTab('serverProtection')">
-                Protection
-                <span class="tab-hint">Q</span>
+            <div class="tab active" onclick="switchTab('serverMain')">
+                Server
+                <div class="tab-shortcut">[Q]</div>
             </div>
-            <div class="tab" onclick="switchTab('serverTrolling')">
-                Trolling
-                <span class="tab-hint">E</span>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="menu-list" id="serverProtectionTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Anti-Ban</span>
-                    <div class="toggle" onclick="toggleOption(this, 'antiban')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Anti-Kick</span>
-                    <div class="toggle" onclick="toggleOption(this, 'antikick')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Bypass Anticheat</span>
-                    <div class="toggle" onclick="toggleOption(this, 'bypassac')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Hide From List</span>
-                    <div class="toggle" onclick="toggleOption(this, 'hidelist')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Anti-Spectate</span>
-                    <div class="toggle" onclick="toggleOption(this, 'antispectate')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-list hidden" id="serverTrollingTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Spoof Name</span>
-                    <div class="toggle" onclick="toggleOption(this, 'spoofname')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Spam Chat</span>
-                    <div class="toggle" onclick="toggleOption(this, 'spamchat')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Fake Death</span>
-                    <div class="toggle" onclick="toggleOption(this, 'fakedeath')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Force Ragdoll All</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Crash Server</span>
-                    <span class="arrow">›</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
-            </div>
-            <span id="serverCounter">1/5</span>
-        </div>
-    </div>
-
-    <!-- Weapon Submenu -->
-    <div class="submenu-container hidden" id="weaponSubmenu">
-        <div class="submenu-header" onclick="backToMain()">
-            <span class="back-arrow">‹</span>
-            <span>Weapon Options</span>
-        </div>
-
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('weaponMain')">
-                Main
-                <span class="tab-hint">Q</span>
-            </div>
-            <div class="tab" onclick="switchTab('weaponMods')">
-                Mods
-                <span class="tab-hint">E</span>
+            <div class="tab" onclick="switchTab('events')">
+                Events
+                <div class="tab-shortcut">[E]</div>
             </div>
         </div>
 
         <div class="content">
-            <div class="menu-list" id="weaponMainTab">
+            <!-- Server Tab -->
+            <div class="menu-list" id="serverMainTab">
                 <div class="submenu-item selected">
-                    <span class="menu-item-text">Give All Weapons</span>
+                    <span class="menu-item-text">Server Crash</span>
                     <span class="arrow">›</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Infinite Ammo</span>
-                    <div class="toggle" onclick="toggleOption(this, 'infiniteammo')">
+                    <span class="menu-item-text">Clear Area</span>
+                    <div class="toggle" onclick="toggleOption(this, 'cleararea')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">No Reload</span>
-                    <div class="toggle" onclick="toggleOption(this, 'noreload')">
-                        <div class="toggle-slider"></div>
-                    </div>
+                    <span class="menu-item-text">Time Control</span>
+                    <span class="menu-item-value">12:00</span>
+                    <span class="arrow">‹ ›</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Rapid Fire</span>
-                    <div class="toggle" onclick="toggleOption(this, 'rapidfire')">
-                        <div class="toggle-slider"></div>
-                    </div>
+                    <span class="menu-item-text">Weather Control</span>
+                    <span class="menu-item-value">Clear</span>
+                    <span class="arrow">‹ ›</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">No Recoil</span>
-                    <div class="toggle" onclick="toggleOption(this, 'norecoil')">
-                        <div class="toggle-slider"></div>
-                    </div>
+                    <span class="menu-item-text">Gravity Control</span>
+                    <span class="menu-item-value">Normal</span>
+                    <span class="arrow">‹ ›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Resource Control</span>
+                    <span class="arrow">›</span>
                 </div>
             </div>
 
-            <div class="menu-list hidden" id="weaponModsTab">
+            <!-- Events Tab -->
+            <div class="menu-list hidden" id="eventsTab">
                 <div class="submenu-item selected">
-                    <span class="menu-item-text">Explosive Bullets</span>
-                    <div class="toggle" onclick="toggleOption(this, 'explosivebullets')">
+                    <span class="menu-item-text">Trigger Event</span>
+                    <span class="arrow">›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Event Logger</span>
+                    <div class="toggle" onclick="toggleOption(this, 'eventlogger')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Fire Bullets</span>
-                    <div class="toggle" onclick="toggleOption(this, 'firebullets')">
+                    <span class="menu-item-text">Block Events</span>
+                    <div class="toggle" onclick="toggleOption(this, 'blockevents')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Teleport Gun</span>
-                    <div class="toggle" onclick="toggleOption(this, 'teleportgun')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Gravity Gun</span>
-                    <div class="toggle" onclick="toggleOption(this, 'gravitygun')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">One Shot Kill</span>
-                    <div class="toggle" onclick="toggleOption(this, 'oneshotkill')">
+                    <span class="menu-item-text">Event Spoofing</span>
+                    <div class="toggle" onclick="toggleOption(this, 'eventspoof')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
@@ -650,773 +611,190 @@
 
         <div class="footer">
             <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
+                <span style="opacity: 0.7; font-size: 12px;">NEXUS v2.1 | Server Tools</span>
             </div>
-            <span id="weaponCounter">1/5</span>
-        </div>
-    </div>
-
-    <!-- Combat Submenu -->
-    <div class="submenu-container hidden" id="combatSubmenu">
-        <div class="submenu-header" onclick="backToMain()">
-            <span class="back-arrow">‹</span>
-            <span>Combat Options</span>
-        </div>
-
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('combatAim')">
-                Aim
-                <span class="tab-hint">Q</span>
-            </div>
-            <div class="tab" onclick="switchTab('combatESP')">
-                ESP
-                <span class="tab-hint">E</span>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="menu-list" id="combatAimTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Aimbot</span>
-                    <div class="toggle" onclick="toggleOption(this, 'aimbot')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Silent Aim</span>
-                    <div class="toggle" onclick="toggleOption(this, 'silentaim')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Triggerbot</span>
-                    <div class="toggle" onclick="toggleOption(this, 'triggerbot')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Kill Aura</span>
-                    <div class="toggle" onclick="toggleOption(this, 'killaura')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Auto Shoot</span>
-                    <div class="toggle" onclick="toggleOption(this, 'autoshoot')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-list hidden" id="combatESPTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">ESP Players</span>
-                    <div class="toggle" onclick="toggleOption(this, 'espplayers')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">ESP Names</span>
-                    <div class="toggle" onclick="toggleOption(this, 'espnames')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">ESP Lines</span>
-                    <div class="toggle" onclick="toggleOption(this, 'esplines')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">ESP Distance</span>
-                    <div class="toggle" onclick="toggleOption(this, 'espdistance')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">ESP Health</span>
-                    <div class="toggle" onclick="toggleOption(this, 'esphealth')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
-            </div>
-            <span id="combatCounter">1/5</span>
-        </div>
-    </div>
-
-    <!-- Vehicle Submenu -->
-    <div class="submenu-container hidden" id="vehicleSubmenu">
-        <div class="submenu-header" onclick="backToMain()">
-            <span class="back-arrow">‹</span>
-            <span>Vehicle Options</span>
-        </div>
-
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('vehicleMain')">
-                Main
-                <span class="tab-hint">Q</span>
-            </div>
-            <div class="tab" onclick="switchTab('vehicleMods')">
-                Mods
-                <span class="tab-hint">E</span>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="menu-list" id="vehicleMainTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">God Mode</span>
-                    <div class="toggle" onclick="toggleOption(this, 'vehiclegod')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Super Speed</span>
-                    <div class="toggle" onclick="toggleOption(this, 'vehiclespeed')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Fly Mode</span>
-                    <div class="toggle" onclick="toggleOption(this, 'vehiclefly')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Rainbow RGB</span>
-                    <div class="toggle" onclick="toggleOption(this, 'vehiclergb')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Spawn Vehicle</span>
-                    <span class="arrow">›</span>
-                </div>
-            </div>
-
-            <div class="menu-list hidden" id="vehicleModsTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Boost</span>
-                    <div class="toggle" onclick="toggleOption(this, 'vehicleboost')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">No Flip</span>
-                    <div class="toggle" onclick="toggleOption(this, 'nofilp')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Instant Brake</span>
-                    <div class="toggle" onclick="toggleOption(this, 'instantbrake')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Drive on Water</span>
-                    <div class="toggle" onclick="toggleOption(this, 'driveonwater')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">No Damage</span>
-                    <div class="toggle" onclick="toggleOption(this, 'nodamage')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
-            </div>
-            <span id="vehicleCounter">1/5</span>
-        </div>
-    </div>
-
-    <!-- Visual Submenu -->
-    <div class="submenu-container hidden" id="visualSubmenu">
-        <div class="submenu-header" onclick="backToMain()">
-            <span class="back-arrow">‹</span>
-            <span>Visual Options</span>
-        </div>
-
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('visualEffects')">
-                Effects
-                <span class="tab-hint">Q</span>
-            </div>
-            <div class="tab" onclick="switchTab('visualWorld')">
-                World
-                <span class="tab-hint">E</span>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="menu-list" id="visualEffectsTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Night Vision</span>
-                    <div class="toggle" onclick="toggleOption(this, 'nightvision')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Thermal Vision</span>
-                    <div class="toggle" onclick="toggleOption(this, 'thermalvision')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">X-Ray Vision</span>
-                    <div class="toggle" onclick="toggleOption(this, 'xrayvision')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Motion Blur</span>
-                    <div class="toggle" onclick="toggleOption(this, 'motionblur')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">No Fog</span>
-                    <div class="toggle" onclick="toggleOption(this, 'nofog')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-list hidden" id="visualWorldTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">No Rain</span>
-                    <div class="toggle" onclick="toggleOption(this, 'norain')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">No Clouds</span>
-                    <div class="toggle" onclick="toggleOption(this, 'noclouds')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Time Changer</span>
-                    <div class="toggle" onclick="toggleOption(this, 'timechanger')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Weather Changer</span>
-                    <div class="toggle" onclick="toggleOption(this, 'weatherchanger')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Remove Objects</span>
-                    <div class="toggle" onclick="toggleOption(this, 'removeobjects')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
-            </div>
-            <span id="visualCounter">1/5</span>
-        </div>
-    </div>
-
-    <!-- Miscellaneous Submenu -->
-    <div class="submenu-container hidden" id="miscSubmenu">
-        <div class="submenu-header" onclick="backToMain()">
-            <span class="back-arrow">‹</span>
-            <span>Miscellaneous Options</span>
-        </div>
-
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('miscTeleport')">
-                Teleport
-                <span class="tab-hint">Q</span>
-            </div>
-            <div class="tab" onclick="switchTab('miscUtility')">
-                Utility
-                <span class="tab-hint">E</span>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="menu-list" id="miscTeleportTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Teleport to Waypoint</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Teleport to Player</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Teleport to Vehicle</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Save Location</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Load Location</span>
-                    <span class="arrow">›</span>
-                </div>
-            </div>
-
-            <div class="menu-list hidden" id="miscUtilityTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Heal Player</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Give Money</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Clear Wanted Level</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Clean Player</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Fix Vehicle</span>
-                    <span class="arrow">›</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
-            </div>
-            <span id="miscCounter">1/5</span>
-        </div>
-    </div>
-
-    <!-- Settings Submenu -->
-    <div class="submenu-container hidden" id="settingsSubmenu">
-        <div class="submenu-header" onclick="backToMain()">
-            <span class="back-arrow">‹</span>
-            <span>Settings Options</span>
-        </div>
-
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('settingsGeneral')">
-                General
-                <span class="tab-hint">Q</span>
-            </div>
-            <div class="tab" onclick="switchTab('settingsAdvanced')">
-                Advanced
-                <span class="tab-hint">E</span>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="menu-list" id="settingsGeneralTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Menu Theme</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Language</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Keybinds</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Notifications</span>
-                    <div class="toggle" onclick="toggleOption(this, 'notifications')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Auto Save</span>
-                    <div class="toggle" onclick="toggleOption(this, 'autosave')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-list hidden" id="settingsAdvancedTab">
-                <div class="submenu-item selected">
-                    <span class="menu-item-text">Debug Mode</span>
-                    <div class="toggle" onclick="toggleOption(this, 'debugmode')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Safe Mode</span>
-                    <div class="toggle" onclick="toggleOption(this, 'safemode')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Performance Mode</span>
-                    <div class="toggle" onclick="toggleOption(this, 'performancemode')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Reset Settings</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Export Config</span>
-                    <span class="arrow">›</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">Q/E to switch | Backspace to return</span>
-            </div>
-            <span id="settingsCounter">1/5</span>
+            <span id="serverCounter">1/6</span>
         </div>
     </div>
 
     <script>
-        // Global variables
-        let currentMenu = 'main';
+        let currentView = 'main';
         let currentTab = 'players';
         let selectedIndex = 0;
         let menuItems = [];
-        let menuCounts = {
-            main: 8,
-            player: 9,
-            server: 5,
-            weapon: 5,
-            combat: 5,
-            vehicle: 5,
-            visual: 5,
-            misc: 5,
-            settings: 5
-        };
+        let toggleStates = {};
+        
+        function updateMenuItems() {
+            if (currentView === 'main') {
+                menuItems = document.querySelectorAll('#mainMenu .menu-item');
+            } else {
+                const activeTab = document.getElementById(currentTab + 'Tab');
+                if (activeTab) {
+                    menuItems = activeTab.querySelectorAll('.submenu-item');
+                }
+            }
+            updateSelection();
+        }
 
-        // Tab configurations for each menu
-        const tabConfigs = {
-            player: ['players', 'actions'],
-            server: ['serverProtection', 'serverTrolling'],
-            weapon: ['weaponMain', 'weaponMods'],
-            combat: ['combatAim', 'combatESP'],
-            vehicle: ['vehicleMain', 'vehicleMods'],
-            visual: ['visualEffects', 'visualWorld'],
-            misc: ['miscTeleport', 'miscUtility'],
-            settings: ['settingsGeneral', 'settingsAdvanced']
-        };
+        function updateSelection() {
+            menuItems.forEach((item, index) => {
+                if (index === selectedIndex) {
+                    item.classList.add('selected');
+                    item.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+            updatePageCounter();
+        }
 
-        // MACHO Integration
-        let isMenuVisible = false;
+        function updatePageCounter() {
+            let counter;
+            if (currentView === 'main') {
+                counter = document.getElementById('mainCounter');
+            } else if (currentView === 'player') {
+                counter = document.getElementById('pageCounter');
+            } else if (currentView === 'server') {
+                counter = document.getElementById('serverCounter');
+            }
+            
+            if (counter && menuItems.length > 0) {
+                counter.textContent = `${selectedIndex + 1}/${menuItems.length}`;
+            }
+        }
 
-        // Initialize menu
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeMainMenu();
-            updateCounter('mainCounter', 1, menuCounts.main);
-            setupKeyboardListeners();
-            hideMenu();
+        function openSubmenu(menu) {
+            currentView = menu;
+            selectedIndex = 0;
+            
+            document.getElementById('mainMenu').classList.add('hidden');
+            
+            if (menu === 'player') {
+                document.getElementById('playerSubmenu').classList.remove('hidden');
+                currentTab = 'players';
+                updateTabs();
+            } else if (menu === 'server') {
+                document.getElementById('serverSubmenu').classList.remove('hidden');
+                currentTab = 'serverMain';
+                updateTabs();
+            }
+            
+            updateMenuItems();
+        }
+
+        function backToMain() {
+            currentView = 'main';
+            selectedIndex = 0;
+            
+            document.querySelectorAll('.submenu-container').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+            document.getElementById('mainMenu').classList.remove('hidden');
+            
+            updateMenuItems();
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            selectedIndex = 0;
+            
+            updateTabs();
+            updateMenuItems();
+        }
+
+        function updateTabs() {
+            // Update active tab visually
+            const activeSubmenu = document.getElementById(currentView + 'Submenu');
+            if (activeSubmenu) {
+                activeSubmenu.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                activeSubmenu.querySelectorAll('.menu-list').forEach(list => list.classList.add('hidden'));
+                
+                const activeTab = activeSubmenu.querySelector(`.tab[onclick*="${tab}"]`);
+                const activeTabContent = document.getElementById(currentTab + 'Tab');
+                
+                if (activeTab) activeTab.classList.add('active');
+                if (activeTabContent) activeTabContent.classList.remove('hidden');
+            }
+        }
+
+        function toggleOption(element, option) {
+            element.classList.toggle('active');
+            toggleStates[option] = element.classList.contains('active');
+            
+            // Send message to Lua (Macho DUI)
+            window.postMessage({
+                action: 'toggleOption',
+                option: option,
+                state: toggleStates[option]
+            }, '*');
+            
+            console.log('Toggle:', option, 'State:', toggleStates[option]);
+        }
+
+        // Keyboard navigation
+        window.addEventListener('message', function(event) {
+            const data = event.data;
+            
+            if (data.action === 'keyPress') {
+                handleKeyPress(data.key);
+            }
         });
 
-        // Setup keyboard event listeners for MACHO
-        function setupKeyboardListeners() {
-            document.addEventListener('keydown', function(event) {
-                // Only handle keys when menu is visible
-                if (!isMenuVisible) return;
-
-                switch(event.key.toLowerCase()) {
-                    case 'arrowup':
-                        event.preventDefault();
-                        event.stopPropagation();
-                        navigateMenu('up');
-                        break;
-                    case 'arrowdown':
-                        event.preventDefault();
-                        event.stopPropagation();
-                        navigateMenu('down');
-                        break;
-                    case 'enter':
-                        event.preventDefault();
-                        event.stopPropagation();
-                        navigateMenu('enter');
-                        break;
-                    case 'backspace':
-                        event.preventDefault();
-                        event.stopPropagation();
-                        if (currentMenu !== 'main') {
-                            backToMain();
-                        }
-                        break;
-                    case 'q':
-                        event.preventDefault();
-                        event.stopPropagation();
-                        if (currentMenu !== 'main') {
-                            switchTabByKey('prev');
-                        }
-                        break;
-                    case 'e':
-                        event.preventDefault();
-                        event.stopPropagation();
-                        if (currentMenu !== 'main') {
-                            switchTabByKey('next');
-                        }
-                        break;
-                    case 'escape':
-                        event.preventDefault();
-                        event.stopPropagation();
-                        hideMenu();
-                        break;
-                }
-            });
-        }
-
-        // Initialize main menu navigation
-        function initializeMainMenu() {
-            menuItems = document.querySelectorAll('#mainMenu .menu-item');
-            selectedIndex = 0;
-            updateSelection();
-        }
-
-        // Update selection highlighting
-        function updateSelection() {
-            const containers = ['mainMenu', 'playerSubmenu', 'serverSubmenu', 'weaponSubmenu', 'combatSubmenu', 'vehicleSubmenu', 'visualSubmenu', 'miscSubmenu', 'settingsSubmenu'];
-            
-            containers.forEach(containerId => {
-                const container = document.getElementById(containerId);
-                if (container && !container.classList.contains('hidden')) {
-                    const items = container.querySelectorAll('.menu-item, .submenu-item');
-                    items.forEach((item, index) => {
-                        item.classList.toggle('selected', index === selectedIndex);
-                    });
-                }
-            });
-        }
-
-        // Navigate menu
-        function navigateMenu(direction) {
-            if (currentMenu === 'main') {
-                if (direction === 'up' && selectedIndex > 0) {
-                    selectedIndex--;
-                } else if (direction === 'down' && selectedIndex < menuItems.length - 1) {
-                    selectedIndex++;
-                } else if (direction === 'enter') {
-                    openSubmenu(menuItems[selectedIndex].dataset.menu);
-                }
-            } else {
-                // Handle submenu navigation
-                const activeTab = getActiveTab();
-                const items = document.querySelectorAll(`#${activeTab} .submenu-item`);
-                
-                if (direction === 'up' && selectedIndex > 0) {
-                    selectedIndex--;
-                } else if (direction === 'down' && selectedIndex < items.length - 1) {
-                    selectedIndex++;
-                } else if (direction === 'enter') {
-                    const selectedItem = items[selectedIndex];
-                    const toggle = selectedItem.querySelector('.toggle');
-                    if (toggle) {
-                        toggleOption(toggle, '');
+        function handleKeyPress(key) {
+            switch(key) {
+                case 'ArrowUp':
+                    selectedIndex = Math.max(0, selectedIndex - 1);
+                    updateSelection();
+                    break;
+                    
+                case 'ArrowDown':
+                    selectedIndex = Math.min(menuItems.length - 1, selectedIndex + 1);
+                    updateSelection();
+                    break;
+                    
+                case 'Enter':
+                    const selectedItem = menuItems[selectedIndex];
+                    if (currentView === 'main') {
+                        const menuName = selectedItem.getAttribute('data-menu');
+                        if (menuName) openSubmenu(menuName);
+                    } else {
+                        const toggle = selectedItem.querySelector('.toggle');
+                        if (toggle) toggle.click();
                     }
-                }
+                    break;
+                    
+                case 'Backspace':
+                    if (currentView !== 'main') backToMain();
+                    break;
+                    
+                case 'KeyQ':
+                    if (currentView === 'player') switchTab('players');
+                    else if (currentView === 'server') switchTab('serverMain');
+                    break;
+                    
+                case 'KeyE':
+                    if (currentView === 'player') switchTab('actions');
+                    else if (currentView === 'server') switchTab('events');
+                    break;
             }
-            
-            updateSelection();
-            updateCounter();
         }
 
-        // Get active tab
-        function getActiveTab() {
-            const activeTab = document.querySelector('.tab.active');
-            if (activeTab) {
-                const tabName = activeTab.onclick.toString().match(/switchTab\('([^']+)'\)/)[1];
-                return tabName + 'Tab';
-            }
-            return 'playersTab';
-        }
-
-        // Switch between tabs using keyboard
-        function switchTabByKey(direction) {
-            const tabs = tabConfigs[currentMenu];
-            if (!tabs || tabs.length < 2) return;
-            
-            const currentTabIndex = tabs.indexOf(currentTab);
-            let newTabIndex;
-            
-            if (direction === 'next') {
-                newTabIndex = (currentTabIndex + 1) % tabs.length;
-            } else {
-                newTabIndex = (currentTabIndex - 1 + tabs.length) % tabs.length;
-            }
-            
-            const newTab = tabs[newTabIndex];
-            switchTab(newTab);
-        }
-
-        // Switch between tabs
-        function switchTab(tabName) {
-            currentTab = tabName;
-            
-            // Update tab appearance - find tabs in current submenu only
-            const currentSubmenu = document.querySelector('.submenu-container:not(.hidden)');
-            if (currentSubmenu) {
-                const tabs = currentSubmenu.querySelectorAll('.tab');
-                tabs.forEach(tab => tab.classList.remove('active'));
+        // Direct keyboard navigation (for testing)
+        document.addEventListener('keydown', function(event) {
+            if (['ArrowUp', 'ArrowDown', 'Enter', 'Backspace', 'q', 'Q', 'e', 'E'].includes(event.key)) {
+                event.preventDefault();
                 
-                // Find and activate the correct tab
-                const targetTab = Array.from(tabs).find(tab => 
-                    tab.onclick && tab.onclick.toString().includes(`switchTab('${tabName}')`)
-                );
-                if (targetTab) {
-                    targetTab.classList.add('active');
-                }
-            }
-            
-            // Show/hide tab content
-            const allTabs = document.querySelectorAll('[id$="Tab"]');
-            allTabs.forEach(tab => tab.classList.add('hidden'));
-            
-            const targetTabContent = document.getElementById(tabName + 'Tab');
-            if (targetTabContent) {
-                targetTabContent.classList.remove('hidden');
-            }
-            
-            // Reset selection
-            selectedIndex = 0;
-            updateSelection();
-            updateCounter();
-        }
-
-        // Open submenu
-        function openSubmenu(menuName) {
-            // Hide main menu
-            document.getElementById('mainMenu').classList.add('hidden');
-            
-            // Show submenu
-            const submenu = document.getElementById(menuName + 'Submenu');
-            if (submenu) {
-                submenu.classList.remove('hidden');
-                currentMenu = menuName;
-                selectedIndex = 0;
-                currentTab = tabConfigs[menuName] ? tabConfigs[menuName][0] : 'players';
-                updateSelection();
-                updateCounter();
-            }
-        }
-
-        // Go back to main menu
-        function backToMain() {
-            // Hide all submenus
-            const submenus = document.querySelectorAll('.submenu-container');
-            submenus.forEach(submenu => submenu.classList.add('hidden'));
-            
-            // Show main menu
-            document.getElementById('mainMenu').classList.remove('hidden');
-            currentMenu = 'main';
-            selectedIndex = 0;
-            currentTab = 'players'; // Reset tab
-            updateSelection();
-            updateCounter('mainCounter', 1, menuCounts.main);
-        }
-
-        // Hide menu completely
-        function hideMenu() {
-            // Hide main menu
-            document.getElementById('mainMenu').classList.add('hidden');
-            
-            // Hide all submenus
-            const submenus = document.querySelectorAll('.submenu-container');
-            submenus.forEach(submenu => submenu.classList.add('hidden'));
-            
-            currentMenu = 'hidden';
-            isMenuVisible = false;
-        }
-
-        // Show menu
-        function showMenu() {
-            document.getElementById('mainMenu').classList.remove('hidden');
-            currentMenu = 'main';
-            selectedIndex = 0;
-            isMenuVisible = true;
-            updateSelection();
-            updateCounter('mainCounter', 1, menuCounts.main);
-        }
-
-        // MACHO Integration Functions
-        function MachoToggleMenu() {
-            if (isMenuVisible) {
-                hideMenu();
-            } else {
-                showMenu();
-            }
-        }
-
-        // Global functions for MACHO
-        window.MachoToggleMenu = MachoToggleMenu;
-        window.MachoToggleOption = toggleOption;
-        window.MachoShowMenu = showMenu;
-        window.MachoHideMenu = hideMenu;
-
-        // Toggle option - MACHO Integration
-        function toggleOption(toggle, optionName) {
-            toggle.classList.toggle('active');
-            const isActive = toggle.classList.contains('active');
-            console.log(`Toggled ${optionName}: ${isActive}`);
-            
-            // Send to MACHO system (replace with your actual MACHO commands)
-            if (typeof MachoSetOption !== 'undefined') {
-                MachoSetOption(optionName, isActive);
-            }
-        }
-
-        // Update counter
-        function updateCounter(counterId = null, current = null, total = null) {
-            if (counterId && current !== null && total !== null) {
-                const counter = document.getElementById(counterId);
-                if (counter) {
-                    counter.textContent = `${current}/${total}`;
-                }
-            } else {
-                // Auto-update based on current menu
-                const counterMap = {
-                    main: 'mainCounter',
-                    player: 'playerCounter',
-                    server: 'serverCounter',
-                    weapon: 'weaponCounter',
-                    combat: 'combatCounter',
-                    vehicle: 'vehicleCounter',
-                    visual: 'visualCounter',
-                    misc: 'miscCounter',
-                    settings: 'settingsCounter'
-                };
+                let key = event.key;
+                if (key === 'q' || key === 'Q') key = 'KeyQ';
+                if (key === 'e' || key === 'E') key = 'KeyE';
+                if (key === 'Backspace') key = 'Backspace';
                 
-                const counterId = counterMap[currentMenu];
-                if (counterId) {
-                    const counter = document.getElementById(counterId);
-                    if (counter) {
-                        const currentIndex = selectedIndex + 1;
-                        const total = menuCounts[currentMenu];
-                        counter.textContent = `${currentIndex}/${total}`;
-                    }
-                }
+                handleKeyPress(key);
             }
-        }
+        });
+
+        // Initialize
+        updateMenuItems();
     </script>
 </body>
 </html>
