@@ -305,6 +305,48 @@
             opacity: 0.6;
             margin-top: 2px;
         }
+
+        .color-preview {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid rgba(255,255,255,0.3);
+            margin-left: 10px;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 150px;
+        }
+
+        .slider {
+            flex: 1;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .slider-fill {
+            position: absolute;
+            height: 100%;
+            background: #00FFFF;
+            border-radius: 2px;
+        }
+
+        .slider-handle {
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
@@ -359,261 +401,333 @@
         </div>
     </div>
 
-    <!-- Player Submenu with Tabs -->
-    <div class="submenu-container hidden" id="playerSubmenu">
+    <!-- Vehicle Submenu -->
+    <div class="submenu-container hidden" id="vehicleSubmenu">
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
             <span class="submenu-logo">NEXUS</span>
-            <span>Player Options</span>
+            <span>Vehicle Options</span>
         </div>
 
         <div class="tabs">
-            <div class="tab active" onclick="switchTab('players')">
-                Players
+            <div class="tab active" onclick="switchTab('vehicleMain')">
+                Vehicle
                 <div class="tab-shortcut">[Q]</div>
             </div>
-            <div class="tab" onclick="switchTab('actions')">
-                Actions
+            <div class="tab" onclick="switchTab('spawner')">
+                Spawner
                 <div class="tab-shortcut">[E]</div>
+            </div>
+            <div class="tab" onclick="switchTab('tuning')">
+                Tuning
+                <div class="tab-shortcut">[R]</div>
             </div>
         </div>
 
         <div class="content">
-            <!-- Players Tab -->
-            <div class="menu-list" id="playersTab">
+            <!-- Vehicle Main Tab -->
+            <div class="menu-list" id="vehicleMainTab">
                 <div class="submenu-item selected">
-                    <span class="menu-item-text">Spectate</span>
-                    <div class="toggle" onclick="toggleOption(this, 'spectate')">
-                        <div class="toggle-slider"></div>
-                    </div>
+                    <span class="menu-item-text">Repair Vehicle</span>
+                    <span class="arrow">⚡</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Ram Player</span>
-                    <div class="toggle" onclick="toggleOption(this, 'ram')">
-                        <div class="toggle-slider"></div>
-                    </div>
+                    <span class="menu-item-text">Delete Vehicle</span>
+                    <span class="arrow">🗑️</span>
                 </div>
                 <div class="submenu-item">
                     <span class="menu-item-text">God Mode</span>
-                    <div class="toggle" onclick="toggleOption(this, 'godmode')">
+                    <div class="toggle" onclick="toggleOption(this, 'veh_godmode')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Infinite Ammo</span>
-                    <div class="toggle" onclick="toggleOption(this, 'infammo')">
+                    <span class="menu-item-text">Invisible Vehicle</span>
+                    <div class="toggle" onclick="toggleOption(this, 'veh_invisible')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">No Ragdoll</span>
-                    <div class="toggle" onclick="toggleOption(this, 'noragdoll')">
+                    <span class="menu-item-text">Speed Boost</span>
+                    <div class="toggle" onclick="toggleOption(this, 'veh_speedboost')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Teleport To</span>
-                    <span class="arrow">›</span>
+                    <span class="menu-item-text">No Collision</span>
+                    <div class="toggle" onclick="toggleOption(this, 'veh_nocollision')">
+                        <div class="toggle-slider"></div>
+                    </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Clone Player</span>
-                    <span class="arrow">›</span>
+                    <span class="menu-item-text">Auto Repair</span>
+                    <div class="toggle" onclick="toggleOption(this, 'veh_autorepair')">
+                        <div class="toggle-slider"></div>
+                    </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Animations</span>
-                    <span class="menu-item-value">Default</span>
-                    <span class="arrow">‹ ›</span>
+                    <span class="menu-item-text">Horn Boost</span>
+                    <div class="toggle" onclick="toggleOption(this, 'veh_hornboost')">
+                        <div class="toggle-slider"></div>
+                    </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Attach Vehicles</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Steal Vehicle</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Give Weapons</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Kick Player</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Freeze Player</span>
-                    <div class="toggle" onclick="toggleOption(this, 'freeze')">
+                    <span class="menu-item-text">Rainbow Paint</span>
+                    <div class="toggle" onclick="toggleOption(this, 'veh_rainbow')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Actions Tab -->
-            <div class="menu-list hidden" id="actionsTab">
+            <!-- Spawner Tab -->
+            <div class="menu-list hidden" id="spawnerTab">
                 <div class="submenu-item selected">
-                    <span class="menu-item-text">Super Speed</span>
-                    <div class="toggle" onclick="toggleOption(this, 'superspeed')">
+                    <span class="menu-item-text">Spawn Custom Vehicle</span>
+                    <span class="arrow">🚗</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Spawn Random Vehicle</span>
+                    <span class="arrow">🎲</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Spawn Saved Vehicle</span>
+                    <span class="arrow">💾</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Vehicle List</span>
+                    <span class="arrow">📋</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Spawn in Garage</span>
+                    <div class="toggle" onclick="toggleOption(this, 'spawn_garage')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Infinite Stamina</span>
-                    <div class="toggle" onclick="toggleOption(this, 'stamina')">
+                    <span class="menu-item-text">Max Upgrade on Spawn</span>
+                    <div class="toggle" onclick="toggleOption(this, 'spawn_maxupgrade')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Super Jump</span>
-                    <div class="toggle" onclick="toggleOption(this, 'superjump')">
+                    <span class="menu-item-text">Replace Current</span>
+                    <div class="toggle" onclick="toggleOption(this, 'spawn_replace')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tuning Tab -->
+            <div class="menu-list hidden" id="tuningTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Max Upgrade</span>
+                    <span class="arrow">⚡</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Engine Level</span>
+                    <span class="menu-item-value">Level 4</span>
+                    <span class="arrow">‹ ›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Turbo</span>
+                    <div class="toggle" onclick="toggleOption(this, 'tune_turbo')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Invisibility</span>
-                    <div class="toggle" onclick="toggleOption(this, 'invisible')">
+                    <span class="menu-item-text">Xenon Lights</span>
+                    <div class="toggle" onclick="toggleOption(this, 'tune_xenon')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Night Vision</span>
-                    <div class="toggle" onclick="toggleOption(this, 'nightvision')">
-                        <div class="toggle-slider"></div>
-                    </div>
+                    <span class="menu-item-text">Neon Kit</span>
+                    <span class="menu-item-value">Rainbow</span>
+                    <span class="arrow">‹ ›</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Thermal Vision</span>
-                    <div class="toggle" onclick="toggleOption(this, 'thermal')">
-                        <div class="toggle-slider"></div>
-                    </div>
+                    <span class="menu-item-text">Color Changer</span>
+                    <span class="arrow">🎨</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Teleport Waypoint</span>
-                    <span class="arrow">›</span>
+                    <span class="menu-item-text">Wheel Type</span>
+                    <span class="menu-item-value">Sport</span>
+                    <span class="arrow">‹ ›</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Heal Player</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Change Skin</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Spawn Vehicle</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Custom Weather</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">No Clip</span>
-                    <div class="toggle" onclick="toggleOption(this, 'noclip')">
-                        <div class="toggle-slider"></div>
-                    </div>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Fast Run</span>
-                    <div class="toggle" onclick="toggleOption(this, 'fastrun')">
-                        <div class="toggle-slider"></div>
-                    </div>
+                    <span class="menu-item-text">Window Tint</span>
+                    <span class="menu-item-value">Dark</span>
+                    <span class="arrow">‹ ›</span>
                 </div>
             </div>
         </div>
 
         <div class="footer">
             <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">NEXUS v2.1 | Premium Edition</span>
+                <span style="opacity: 0.7; font-size: 12px;">NEXUS v2.1 | Vehicle System</span>
             </div>
-            <span id="pageCounter">1/13</span>
+            <span id="vehicleCounter">1/9</span>
         </div>
     </div>
 
-    <!-- Server Submenu -->
-    <div class="submenu-container hidden" id="serverSubmenu">
+    <!-- Settings Submenu -->
+    <div class="submenu-container hidden" id="settingsSubmenu">
         <div class="submenu-header" onclick="backToMain()">
             <span class="back-arrow">‹</span>
             <span class="submenu-logo">NEXUS</span>
-            <span>Server Options</span>
+            <span>Settings & Design</span>
         </div>
 
         <div class="tabs">
-            <div class="tab active" onclick="switchTab('serverMain')">
-                Server
+            <div class="tab active" onclick="switchTab('appearance')">
+                Appearance
                 <div class="tab-shortcut">[Q]</div>
             </div>
-            <div class="tab" onclick="switchTab('events')">
-                Events
+            <div class="tab" onclick="switchTab('controls')">
+                Controls
                 <div class="tab-shortcut">[E]</div>
+            </div>
+            <div class="tab" onclick="switchTab('performance')">
+                Performance
+                <div class="tab-shortcut">[R]</div>
             </div>
         </div>
 
         <div class="content">
-            <!-- Server Tab -->
-            <div class="menu-list" id="serverMainTab">
+            <!-- Appearance Tab -->
+            <div class="menu-list" id="appearanceTab">
                 <div class="submenu-item selected">
-                    <span class="menu-item-text">Server Crash</span>
-                    <span class="arrow">›</span>
+                    <span class="menu-item-text">Menu Theme</span>
+                    <span class="menu-item-value">NEXUS Blue</span>
+                    <span class="arrow">‹ ›</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Clear Area</span>
-                    <div class="toggle" onclick="toggleOption(this, 'cleararea')">
+                    <span class="menu-item-text">Menu Color</span>
+                    <div class="color-preview" style="background: #00FFFF;"></div>
+                    <span class="arrow">🎨</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Menu Opacity</span>
+                    <div class="slider-container">
+                        <div class="slider">
+                            <div class="slider-fill" style="width: 80%;"></div>
+                            <div class="slider-handle" style="left: 80%;"></div>
+                        </div>
+                        <span class="menu-item-value">80%</span>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Menu Position</span>
+                    <span class="menu-item-value">Top Left</span>
+                    <span class="arrow">‹ ›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Menu Size</span>
+                    <span class="menu-item-value">Medium</span>
+                    <span class="arrow">‹ ›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Show Watermark</span>
+                    <div class="toggle active" onclick="toggleOption(this, 'show_watermark')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Time Control</span>
-                    <span class="menu-item-value">12:00</span>
-                    <span class="arrow">‹ ›</span>
+                    <span class="menu-item-text">Animated Background</span>
+                    <div class="toggle active" onclick="toggleOption(this, 'animated_bg')">
+                        <div class="toggle-slider"></div>
+                    </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Weather Control</span>
-                    <span class="menu-item-value">Clear</span>
-                    <span class="arrow">‹ ›</span>
+                    <span class="menu-item-text">Sound Effects</span>
+                    <div class="toggle" onclick="toggleOption(this, 'sound_effects')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls Tab -->
+            <div class="menu-list hidden" id="controlsTab">
+                <div class="submenu-item selected">
+                    <span class="menu-item-text">Menu Key</span>
+                    <span class="menu-item-value">F5</span>
+                    <span class="arrow">⌨️</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Gravity Control</span>
+                    <span class="menu-item-text">Navigation Speed</span>
                     <span class="menu-item-value">Normal</span>
                     <span class="arrow">‹ ›</span>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Resource Control</span>
-                    <span class="arrow">›</span>
+                    <span class="menu-item-text">Controller Support</span>
+                    <div class="toggle" onclick="toggleOption(this, 'controller_support')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Mouse Control</span>
+                    <div class="toggle active" onclick="toggleOption(this, 'mouse_control')">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Quick Access Keys</span>
+                    <span class="arrow">⚡</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Reset Controls</span>
+                    <span class="arrow">🔄</span>
                 </div>
             </div>
 
-            <!-- Events Tab -->
-            <div class="menu-list hidden" id="eventsTab">
+            <!-- Performance Tab -->
+            <div class="menu-list hidden" id="performanceTab">
                 <div class="submenu-item selected">
-                    <span class="menu-item-text">Trigger Event</span>
-                    <span class="arrow">›</span>
-                </div>
-                <div class="submenu-item">
-                    <span class="menu-item-text">Event Logger</span>
-                    <div class="toggle" onclick="toggleOption(this, 'eventlogger')">
+                    <span class="menu-item-text">FPS Boost</span>
+                    <div class="toggle" onclick="toggleOption(this, 'fps_boost')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Block Events</span>
-                    <div class="toggle" onclick="toggleOption(this, 'blockevents')">
+                    <span class="menu-item-text">Reduce Lag</span>
+                    <div class="toggle active" onclick="toggleOption(this, 'reduce_lag')">
                         <div class="toggle-slider"></div>
                     </div>
                 </div>
                 <div class="submenu-item">
-                    <span class="menu-item-text">Event Spoofing</span>
-                    <div class="toggle" onclick="toggleOption(this, 'eventspoof')">
+                    <span class="menu-item-text">Memory Optimizer</span>
+                    <div class="toggle" onclick="toggleOption(this, 'memory_optimizer')">
                         <div class="toggle-slider"></div>
                     </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Texture Quality</span>
+                    <span class="menu-item-value">High</span>
+                    <span class="arrow">‹ ›</span>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Render Distance</span>
+                    <div class="slider-container">
+                        <div class="slider">
+                            <div class="slider-fill" style="width: 60%;"></div>
+                            <div class="slider-handle" style="left: 60%;"></div>
+                        </div>
+                        <span class="menu-item-value">60%</span>
+                    </div>
+                </div>
+                <div class="submenu-item">
+                    <span class="menu-item-text">Performance Mode</span>
+                    <span class="menu-item-value">Balanced</span>
+                    <span class="arrow">‹ ›</span>
                 </div>
             </div>
         </div>
 
         <div class="footer">
             <div class="footer-left">
-                <span style="opacity: 0.7; font-size: 12px;">NEXUS v2.1 | Server Tools</span>
+                <span style="opacity: 0.7; font-size: 12px;">NEXUS v2.1 | Settings</span>
             </div>
-            <span id="serverCounter">1/6</span>
+            <span id="settingsCounter">1/8</span>
         </div>
     </div>
 
@@ -652,10 +766,12 @@
             let counter;
             if (currentView === 'main') {
                 counter = document.getElementById('mainCounter');
+            } else if (currentView === 'vehicle') {
+                counter = document.getElementById('vehicleCounter');
+            } else if (currentView === 'settings') {
+                counter = document.getElementById('settingsCounter');
             } else if (currentView === 'player') {
                 counter = document.getElementById('pageCounter');
-            } else if (currentView === 'server') {
-                counter = document.getElementById('serverCounter');
             }
             
             if (counter && menuItems.length > 0) {
@@ -672,13 +788,15 @@
             if (menu === 'player') {
                 document.getElementById('playerSubmenu').classList.remove('hidden');
                 currentTab = 'players';
-                updateTabs();
-            } else if (menu === 'server') {
-                document.getElementById('serverSubmenu').classList.remove('hidden');
-                currentTab = 'serverMain';
-                updateTabs();
+            } else if (menu === 'vehicle') {
+                document.getElementById('vehicleSubmenu').classList.remove('hidden');
+                currentTab = 'vehicleMain';
+            } else if (menu === 'settings') {
+                document.getElementById('settingsSubmenu').classList.remove('hidden');
+                currentTab = 'appearance';
             }
             
+            updateTabs();
             updateMenuItems();
         }
 
@@ -703,13 +821,12 @@
         }
 
         function updateTabs() {
-            // Update active tab visually
             const activeSubmenu = document.getElementById(currentView + 'Submenu');
             if (activeSubmenu) {
                 activeSubmenu.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 activeSubmenu.querySelectorAll('.menu-list').forEach(list => list.classList.add('hidden'));
                 
-                const activeTab = activeSubmenu.querySelector(`.tab[onclick*="${tab}"]`);
+                const activeTab = activeSubmenu.querySelector(`.tab[onclick*="${currentTab}"]`);
                 const activeTabContent = document.getElementById(currentTab + 'Tab');
                 
                 if (activeTab) activeTab.classList.add('active');
@@ -732,14 +849,6 @@
         }
 
         // Keyboard navigation
-        window.addEventListener('message', function(event) {
-            const data = event.data;
-            
-            if (data.action === 'keyPress') {
-                handleKeyPress(data.key);
-            }
-        });
-
         function handleKeyPress(key) {
             switch(key) {
                 case 'ArrowUp':
@@ -768,25 +877,38 @@
                     break;
                     
                 case 'KeyQ':
-                    if (currentView === 'player') switchTab('players');
-                    else if (currentView === 'server') switchTab('serverMain');
+                    if (currentView === 'vehicle') switchTab('vehicleMain');
+                    else if (currentView === 'settings') switchTab('appearance');
                     break;
                     
                 case 'KeyE':
-                    if (currentView === 'player') switchTab('actions');
-                    else if (currentView === 'server') switchTab('events');
+                    if (currentView === 'vehicle') switchTab('spawner');
+                    else if (currentView === 'settings') switchTab('controls');
+                    break;
+                    
+                case 'KeyR':
+                    if (currentView === 'vehicle') switchTab('tuning');
+                    else if (currentView === 'settings') switchTab('performance');
                     break;
             }
         }
 
-        // Direct keyboard navigation (for testing)
+        // Event listeners
+        window.addEventListener('message', function(event) {
+            const data = event.data;
+            if (data.action === 'keyPress') {
+                handleKeyPress(data.key);
+            }
+        });
+
         document.addEventListener('keydown', function(event) {
-            if (['ArrowUp', 'ArrowDown', 'Enter', 'Backspace', 'q', 'Q', 'e', 'E'].includes(event.key)) {
+            if (['ArrowUp', 'ArrowDown', 'Enter', 'Backspace', 'q', 'Q', 'e', 'E', 'r', 'R'].includes(event.key)) {
                 event.preventDefault();
                 
                 let key = event.key;
                 if (key === 'q' || key === 'Q') key = 'KeyQ';
                 if (key === 'e' || key === 'E') key = 'KeyE';
+                if (key === 'r' || key === 'R') key = 'KeyR';
                 if (key === 'Backspace') key = 'Backspace';
                 
                 handleKeyPress(key);
