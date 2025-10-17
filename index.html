@@ -1,119 +1,96 @@
-<script>
-    // إعدادات زر المنيو
-    let menuToggleKey = 'g'; // زر G الافتراضي
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MACHO MENU</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-family: Arial;
+            display: none;
+        }
+        .menu-item {
+            padding: 15px;
+            margin: 5px;
+            background: rgba(50, 50, 50, 0.7);
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .menu-item:hover {
+            background: rgba(70, 70, 70, 0.9);
+        }
+    </style>
+</head>
+<body id="menu">
+    <h2>MACHO MENU</h2>
     
-    // وظيفة فتح/إغلاق المنيو
-    function toggleMenu() {
-        const mainMenu = document.getElementById('mainMenu');
-        const submenus = document.querySelectorAll('.submenu-container');
-        
-        if (mainMenu.classList.contains('hidden')) {
-            // إظهار المنيو
-            mainMenu.classList.remove('hidden');
-            submenus.forEach(menu => menu.classList.add('hidden'));
-            currentView = 'main';
-            selectedIndex = 0;
-            updateMenuItems();
-            console.log('Menu opened');
-        } else {
-            // إخفاء المنيو
-            mainMenu.classList.add('hidden');
-            submenus.forEach(menu => menu.classList.add('hidden'));
-            console.log('Menu closed');
-        }
-        
-        // إرسال حالة المنيو إلى Lua
-        fetch(`https://${GetParentResourceName()}/executeCommand`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: JSON.stringify({
-                command: 'menuToggled',
-                parameters: { isOpen: !mainMenu.classList.contains('hidden') }
-            })
-        });
-    }
+    <div class="menu-item" onclick="spawnVehicle('adder')">
+        Spawn Adder
+    </div>
+    
+    <div class="menu-item" onclick="healPlayer()">
+        Heal Player
+    </div>
+    
+    <div class="menu-item" onclick="fixVehicle()">
+        Fix Vehicle
+    </div>
+    
+    <div class="menu-item" onclick="closeMenu()">
+        Close Menu
+    </div>
 
-    // مستمع لوحة المفاتيح لزر G
-    document.addEventListener('keydown', function(event) {
-        // زر G لفتح/إغلاق المنيو
-        if (event.key.toLowerCase() === 'g' || event.code === 'KeyG') {
-            event.preventDefault();
-            toggleMenu();
-            return;
-        }
-        
-        // الأزرار الأخرى للتنقل (فقط إذا كان المنيو مفتوح)
-        if (!document.getElementById('mainMenu').classList.contains('hidden')) {
-            if (['ArrowUp', 'ArrowDown', 'Enter', 'Backspace', 'q', 'Q', 'e', 'E', 'Escape'].includes(event.key)) {
-                event.preventDefault();
-                
-                let key = event.key;
-                if (key === 'q' || key === 'Q') key = 'KeyQ';
-                if (key === 'e' || key === 'E') key = 'KeyE';
-                if (key === 'Backspace') key = 'Backspace';
-                if (key === 'Escape') key = 'Escape';
-                
-                handleKeyPress(key);
+    <script>
+        // إظهار/إخفاء المنيو
+        window.addEventListener('message', function(event) {
+            if (event.data.action == 'showMenu') {
+                document.body.style.display = 'block';
+            } else if (event.data.action == 'hideMenu') {
+                document.body.style.display = 'none';
             }
-        }
-    });
+        });
 
-    // استقبال الأوامر من Lua
-    window.addEventListener('message', function(event) {
-        const data = event.data;
-        
-        if (data.action === 'showMenu') {
-            document.getElementById('mainMenu').classList.remove('hidden');
-            currentView = 'main';
-            selectedIndex = 0;
-            updateMenuItems();
-        }
-        else if (data.action === 'hideMenu') {
-            document.getElementById('mainMenu').classList.add('hidden');
-            document.querySelectorAll('.submenu-container').forEach(menu => {
-                menu.classList.add('hidden');
+        // إرسال الأوامر إلى Lua
+        function spawnVehicle(vehicle) {
+            fetch(`https://${GetParentResourceName()}/executeCommand`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ command: 'spawnVehicle', parameters: { vehicleName: vehicle } })
             });
         }
-        else if (data.action === 'keyPress') {
-            handleKeyPress(data.key);
+
+        function healPlayer() {
+            fetch(`https://${GetParentResourceName()}/executeCommand`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ command: 'healPlayer' })
+            });
         }
-        else if (data.action === 'toggleMenu') {
-            toggleMenu();
+
+        function fixVehicle() {
+            fetch(`https://${GetParentResourceName()}/executeCommand`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ command: 'fixVehicle' })
+            });
         }
-    });
 
-    // إرسال الأوامر إلى Lua عند النقر على العناصر
-    function executeLuaCommand(command, parameters = {}) {
-        fetch(`https://${GetParentResourceName()}/executeCommand`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: JSON.stringify({
-                command: command,
-                parameters: parameters
-            })
-        }).then(resp => resp.json()).then(resp => console.log(resp));
-    }
+        function closeMenu() {
+            fetch(`https://${GetParentResourceName()}/closeMenu`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
 
-    // تعديل دالة toggleOption لإرسال الأوامر إلى Lua
-    function toggleOption(element, option) {
-        element.classList.toggle('active');
-        const state = element.classList.contains('active');
-        toggleStates[option] = state;
-        
-        // إرسال إلى Lua
-        executeLuaCommand('toggleOption', {
-            option: option,
-            state: state
-        });
-    }
-
-    // إخفاء المنيو في البداية
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('mainMenu').classList.add('hidden');
-        console.log('MACHO MENU loaded - Press G to open');
-    });
-</script>
+        // إغلاق بالزر ESC
+        document.onkeyup = function(data) {
+            if (data.key == 'Escape') {
+                closeMenu();
+            }
+        };
+    </script>
+</body>
+</html>
